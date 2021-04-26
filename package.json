@@ -1,0 +1,28 @@
+{
+  "name": "streamlabs-scoreboard",
+  "version": "1.0.0",
+  "description": "A HTML element with a scoreboard to use in Streamlabs OBS.",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Touratica/streamlabs-scoreboard.git"
+  },
+  "author": "João Pedro Almeida <joao.pedro.1999@outlook.pt>",
+  "license": "EUPL-1.2",
+  "bugs": {
+    "url": "https://github.com/Touratica/streamlabs-scoreboard/issues"
+  },
+  "homepage": "https://github.com/Touratica/streamlabs-scoreboard#readme",
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "2.2.1"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
