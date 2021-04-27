@@ -4,8 +4,14 @@
   "description": "A HTML element with a scoreboard to use in Streamlabs OBS.",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "build": "run-p build:*",
+    "build:sass": "npx sass src/sass:build/css",
+    "build:ts": "npx tsc",
+    "debug": "run-p debug:*",
+    "debug:ts": "npx tsc -w",
+    "debug:sass": "npx sass --watch src/sass:build/css",
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,9 +24,13 @@
   },
   "homepage": "https://github.com/Touratica/streamlabs-scoreboard#readme",
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "prettier": "2.2.1"
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.2.1",
+    "sass": "^1.32.11",
+    "typescript": "^4.2.4"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
