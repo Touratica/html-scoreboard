@@ -11,7 +11,7 @@ function __init__() {
 
   if (form)
     form.onsubmit = (e) => {
-      e.preventDefault();
+      e.preventDefault(); // Prevents page from reloading when form is submitted
       const formData = new FormData(form);
 
       const homeInitials = document.querySelector("#home");
@@ -34,10 +34,16 @@ function __init__() {
   timerCycle();
 }
 
+/**
+ * Disables listener for keydown event, triggers the pressed key's corresponding
+ * function and enables the event listener again.
+ *
+ * @param {KeyboardEvent} e - The event used to extract the pressed key
+ */
 function keydownListener(e: KeyboardEvent) {
   document.removeEventListener("keydown", keydownListener);
   switch (e.key) {
-    case "p":
+    case "p": // Starts/stops the countdown timer
       toggleTimer();
       break;
   }
@@ -45,15 +51,13 @@ function keydownListener(e: KeyboardEvent) {
 }
 
 function toggleTimer() {
-  document.removeEventListener("keydown", keydownListener);
   stopTime = !stopTime;
-  date = Date.now() - (sec % 1) * 1000;
-  document.addEventListener("keydown", keydownListener);
+  date = Date.now();
 }
 
 function timerCycle() {
   if (!stopTime) {
-    let timePassed = (Date.now() - date) / 1000;
+    let timePassed = (Date.now() - date) / 1000; // Check for how long it's been since the last time the next line ran
     date = Date.now();
 
     sec -= timePassed;
