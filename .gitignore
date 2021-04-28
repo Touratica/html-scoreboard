@@ -191,4 +191,5 @@ dist
 
 
 # Built project
-build/
+build/*
+!build/index.html
