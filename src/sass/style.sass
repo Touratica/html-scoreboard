@@ -1,6 +1,84 @@
-.dev
-	background: black
+$COLOR: #232323
+$FONT-SIZE: 24px
 
-div
+$HEIGHT: $FONT-SIZE * 1.4
+
+$TOP: 25px
+$LEFT: $TOP * 16 / 9
+.dev
+	background-image: url("../../assets/Corfebol.jpg")
+	background-size: cover
+
+#scoreboard
 	color: #FFFFFF
 	font-family: sans-serif
+	font-size: $FONT-SIZE
+	position: absolute
+	top: $TOP
+	left: $LEFT
+
+#scoreboard *
+	display: flex
+	align-items: center
+	justify-content: center
+	float: left
+	text-align: center
+	height: $HEIGHT
+
+.team-colors
+	width: $FONT-SIZE * 0.15
+	background: red
+
+.team
+	background: rgba($COLOR, .9)
+	width: $FONT-SIZE * 4
+
+#score, #time
+	background: rgba($COLOR, .7)
+
+	#home-score
+		margin-left: $FONT-SIZE * 0.3
+
+	#away-score
+		margin-right: $FONT-SIZE * 0.3
+
+.score, #time
+	display: flex
+	align-items: center
+	justify-content: center
+	font-size: $FONT-SIZE
+
+.number
+	width: 1.2 * $FONT-SIZE
+
+#time
+	width: $FONT-SIZE * 3
+
+#settings
+	position: absolute
+	top: $TOP
+	right: $LEFT
+	padding: 1%
+	border-radius: 10px
+	background-color: rgba(255, 255, 255, 0.5)
+	width: 25%
+
+	div
+		margin: 5px
+
+		div
+			margin: 0
+			display: flex
+
+		label
+			float: left
+			width: 100px
+			text-align: left
+
+		input
+			flex-grow: 1
+
+	.submit
+		margin-top: 5px
+		display: block
+		text-align: right
