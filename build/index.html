@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <script src="js/main.js"></script>
+  </head>
+  <body class="dev">
+    <div id="scoreboard" class="">
+      <div id="scores" class="">
+        <div id="home-colors" class="team-colors"></div>
+        <div id="home" class="team">NCB</div>
+        <div id="score" class="">
+          <div id="home-score" class="score number">0</div>
+          <div class="score">-</div>
+          <div id="away-score" class="score number">0</div>
+        </div>
+        <div id="away" class="team">CRCQL</div>
+        <div id="away-colors" class="team-colors"></div>
+      </div>
+      <div id="time" class="">25:00</div>
+    </div>
+    <form id="settings">
+      <div id="home-settings">
+        <div>
+          <label for="home-team-input">Home team:</label>
+          <input
+            type="text"
+            name="home-team-input"
+            id="home-team-input"
+            placeholder="Team initials"
+          />
+        </div>
+        <div>
+          <label for="home-score-input">Score:</label>
+          <input
+            type="number"
+            name="home-score-input"
+            id="home-score-input"
+            min="0"
+            max="99"
+            value="0"
+          />
+        </div>
+        <div>
+          <label for="home-color-input">Color:</label>
+          <input
+            type="text"
+            name="home-color-input"
+            id="home-color-input"
+            placeholder="HEX code"
+          />
+        </div>
+      </div>
+      <div id="away-settings">
+        <div>
+          <label for="away-team-input">Away team:</label>
+          <input
+            type="text"
+            name="away-team-input"
+            id="away-team-input"
+            placeholder="Team initials"
+          />
+        </div>
+        <div>
+          <label for="away-score-input">Score:</label>
+          <input
+            type="number"
+            name="away-score-input"
+            id="away-score-input"
+            min="0"
+            max="99"
+            value="0"
+          />
+        </div>
+        <div>
+          <label for="away-color-input">Color:</label>
+          <input
+            type="text"
+            name="away-color-input"
+            id="away-color-input"
+            placeholder="HEX code"
+          />
+        </div>
+      </div>
+      <div id="time-settings">
+        <div>
+          <label for="timer-input">Timer:</label>
+          <input
+            type="text"
+            name="timer-input"
+            id="timer-input"
+            value="25:00"
+          />
+        </div>
+      </div>
+      <div class="submit">
+        <button type="submit" id="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+</html>
