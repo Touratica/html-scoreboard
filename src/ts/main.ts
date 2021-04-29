@@ -1,5 +1,5 @@
-let min: number;
-let sec: number;
+let min: number = 25;
+let sec: number = 0;
 // let millis: number = 99;
 
 let date: number = 0;
@@ -29,6 +29,12 @@ export function __init__() {
       const awayScore = document.querySelector("#away-score");
       if (awayScore)
         awayScore.innerHTML = formData.get("away-score-input") as string;
+
+      const timer = document.querySelector("#time");
+      if (timer) timer.innerHTML = formData.get("timer-input") as string;
+      const time = String(formData.get("timer-input")).split(":");
+      min = parseInt(time[0]);
+      sec = parseInt(time[1]);
     };
 
   document.addEventListener("keydown", keydownListener);
