@@ -1,12 +1,8 @@
-let min: number = 1;
-let sec: number = 20;
-let millis: number = 99;
+import { Timer } from "./Timer.js";
 
-let date: number;
+let timer = new Timer(25, 0);
 
-let stopTime = true;
-
-function __init__() {
+export function __init__() {
   const form: HTMLFormElement | null = document.querySelector("#settings");
 
   if (form)
@@ -30,8 +26,9 @@ function __init__() {
       if (awayScore)
         awayScore.innerHTML = formData.get("away-score-input") as string;
     };
+
   document.addEventListener("keydown", keydownListener);
-  timerCycle();
+  timer.countdown(); // Sets timer in countdown mode
 }
 
 /**
@@ -44,34 +41,8 @@ function keydownListener(e: KeyboardEvent) {
   document.removeEventListener("keydown", keydownListener);
   switch (e.key) {
     case "p": // Starts/stops the countdown timer
-      toggleTimer();
+      timer.toggleTimer();
       break;
   }
   document.addEventListener("keydown", keydownListener);
-}
-
-function toggleTimer() {
-  stopTime = !stopTime;
-  date = Date.now();
-}
-
-function timerCycle() {
-  if (!stopTime) {
-    let timePassed = (Date.now() - date) / 1000; // Check for how long it's been since the last time the next line ran
-    date = Date.now();
-
-    sec -= timePassed;
-
-    if (sec <= 0) {
-      min -= 1;
-      sec += 60;
-    }
-
-    const timer = document.querySelector("#time");
-    if (timer)
-      timer.innerHTML = `${min}:${
-        sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
-      }`;
-  }
-  setTimeout(timerCycle, 10);
 }
