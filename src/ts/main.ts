@@ -12,6 +12,11 @@ let score: Score = {
   away: 0,
 };
 
+let half: { [key: string]: string } = {
+  first: "1P",
+  second: "2P",
+};
+
 let date: number = 0;
 
 let stopTime: boolean = true;
@@ -62,6 +67,14 @@ export function __init__() {
       min = parseInt(time[0]);
       sec = parseInt(time[1]);
       millis = 0;
+
+      const halfSetting = form.querySelector<HTMLElement>(
+        "input[name='half']:checked"
+      );
+      const halfElement = document.querySelector<HTMLElement>("#half");
+      if (halfSetting && halfElement)
+        halfElement.innerHTML =
+          half[halfSetting.getAttribute("value") as string];
     };
 
   document.addEventListener("keydown", keydownListener);
