@@ -2,6 +2,16 @@ let min: number = 25;
 let sec: number = 0;
 // let millis: number = 99;
 
+type Score = {
+  home: number;
+  away: number;
+};
+
+let score: Score = {
+  home: 0,
+  away: 0,
+};
+
 let date: number = 0;
 
 let stopTime: boolean = true;
@@ -18,9 +28,11 @@ export function __init__() {
       if (homeInitials)
         homeInitials.innerHTML = formData.get("home-team-input") as string;
 
-      const homeScore = document.querySelector<HTMLElement>("#home-score");
-      if (homeScore)
-        homeScore.innerHTML = formData.get("home-score-input") as string;
+      score.home = parseInt(formData.get("home-score-input") as string);
+      const homeScoreElement = document.querySelector<HTMLElement>(
+        "#home-score"
+      );
+      if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
 
       const homeColor = document.querySelector<HTMLElement>("#home-colors");
       if (homeColor)
@@ -32,9 +44,11 @@ export function __init__() {
       if (awayTeam)
         awayTeam.innerHTML = formData.get("away-team-input") as string;
 
-      const awayScore = document.querySelector<HTMLElement>("#away-score");
-      if (awayScore)
-        awayScore.innerHTML = formData.get("away-score-input") as string;
+      score.away = parseInt(formData.get("away-score-input") as string);
+      const awayScoreElement = document.querySelector<HTMLElement>(
+        "#away-score"
+      );
+      if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
 
       const awayColor = document.querySelector<HTMLElement>("#away-colors");
       if (awayColor)
@@ -44,7 +58,7 @@ export function __init__() {
 
       const timer = document.querySelector<HTMLElement>("#time");
       if (timer) timer.innerHTML = formData.get("timer-input") as string;
-      const time = String(formData.get("timer-input")).split(":");
+      const time = (formData.get("timer-input") as string).split(":");
       min = parseInt(time[0]);
       sec = parseInt(time[1]);
     };
@@ -64,6 +78,12 @@ function keydownListener(e: KeyboardEvent) {
   switch (e.key) {
     case "p": // Starts/stops the countdown timer
       toggleTimer();
+      break;
+    case "w":
+      increaseScore("home");
+      break;
+    case "e":
+      increaseScore("away");
       break;
   }
   document.addEventListener("keydown", keydownListener);
@@ -93,4 +113,23 @@ function countdown() {
       }`;
   }
   setTimeout(countdown, 10);
+}
+
+function increaseScore(side: "home" | "away") {
+  switch (side) {
+    case "home":
+      score.home += 1;
+      const homeScoreElement = document.querySelector<HTMLElement>(
+        "#home-score"
+      );
+      if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
+      return;
+    case "away":
+      score.away += 1;
+      const awayScoreElement = document.querySelector<HTMLElement>(
+        "#away-score"
+      );
+      if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
+      return;
+  }
 }
