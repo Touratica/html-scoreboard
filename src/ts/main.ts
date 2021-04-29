@@ -139,7 +139,7 @@ function countdown() {
 
     const timer = document.querySelector<HTMLElement>("#time");
     if (timer) {
-      if (min > 0 && sec > 0)
+      if (min > 0)
         timer.innerHTML = `${min}:${
           sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
         }`;
