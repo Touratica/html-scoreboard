@@ -85,6 +85,12 @@ function keydownListener(e: KeyboardEvent) {
     case "e":
       increaseScore("away");
       break;
+    case "s":
+      decreaseScore("home");
+      break;
+    case "d":
+      decreaseScore("away");
+      break;
   }
   document.addEventListener("keydown", keydownListener);
 }
@@ -118,18 +124,45 @@ function countdown() {
 function increaseScore(side: "home" | "away") {
   switch (side) {
     case "home":
-      score.home += 1;
-      const homeScoreElement = document.querySelector<HTMLElement>(
-        "#home-score"
-      );
-      if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
+      if (score.home < 99) {
+        score.home += 1;
+        const homeScoreElement = document.querySelector<HTMLElement>(
+          "#home-score"
+        );
+        if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
+      }
       return;
     case "away":
-      score.away += 1;
-      const awayScoreElement = document.querySelector<HTMLElement>(
-        "#away-score"
-      );
-      if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
+      if (score.away < 99) {
+        score.away += 1;
+        const awayScoreElement = document.querySelector<HTMLElement>(
+          "#away-score"
+        );
+        if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
+      }
+      return;
+  }
+}
+
+function decreaseScore(side: "home" | "away") {
+  switch (side) {
+    case "home":
+      if (score.home > 0) {
+        score.home -= 1;
+        const homeScoreElement = document.querySelector<HTMLElement>(
+          "#home-score"
+        );
+        if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
+      }
+      return;
+    case "away":
+      if (score.away > 0) {
+        score.away -= 1;
+        const awayScoreElement = document.querySelector<HTMLElement>(
+          "#away-score"
+        );
+        if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
+      }
       return;
   }
 }
