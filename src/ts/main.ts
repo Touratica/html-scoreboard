@@ -1,6 +1,6 @@
 let min: number = 25;
 let sec: number = 0;
-// let millis: number = 99;
+let millis: number = 0;
 
 type Score = {
   home: number;
@@ -61,6 +61,7 @@ export function __init__() {
       const time = (formData.get("timer-input") as string).split(":");
       min = parseInt(time[0]);
       sec = parseInt(time[1]);
+      millis = 0;
     };
 
   document.addEventListener("keydown", keydownListener);
@@ -79,16 +80,16 @@ function keydownListener(e: KeyboardEvent) {
     case "p": // Starts/stops the countdown timer
       toggleTimer();
       break;
-    case "w":
+    case "w": // Increases home score by 1
       increaseScore("home");
       break;
-    case "e":
+    case "e": // Increases away score by 1
       increaseScore("away");
       break;
-    case "s":
+    case "s": // Decreases home score by 1
       decreaseScore("home");
       break;
-    case "d":
+    case "d": // Decreases away score by 1
       decreaseScore("away");
       break;
   }
@@ -102,21 +103,38 @@ function toggleTimer() {
 
 function countdown() {
   if (!stopTime) {
-    let timePassed = (Date.now() - date) / 1000; // Check for how long it's been since the last time the next line ran
+    let timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
 
-    sec -= timePassed;
+    millis -= timePassed;
 
-    if (sec <= 0) {
+    if (millis <= 0) {
+      sec -= 1;
+      millis += 100;
+    }
+
+    if (sec < 0) {
       min -= 1;
-      sec += 60;
+      sec = 59;
+    }
+
+    if (min < 0) {
+      stopTime = true;
+      setTimeout(countdown, 10);
+      return;
     }
 
     const timer = document.querySelector<HTMLElement>("#time");
-    if (timer)
-      timer.innerHTML = `${min}:${
-        sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
-      }`;
+    if (timer) {
+      if (min > 0 && sec > 0)
+        timer.innerHTML = `${min}:${
+          sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
+        }`;
+      else
+        timer.innerHTML = `${sec}.${
+          millis >= 10 ? Math.floor(millis) : `0${Math.floor(millis)}`
+        }`;
+    }
   }
   setTimeout(countdown, 10);
 }
