@@ -90,20 +90,23 @@ export function __init__() {
 function keydownListener(e: KeyboardEvent) {
   document.removeEventListener("keydown", keydownListener);
   switch (e.key) {
-    case "p": // Starts/stops the countdown timer
+    case "F13": // Starts/stops the countdown timer
       toggleTimer();
       break;
-    case "w": // Increases home score by 1
+    case "F14": // Increases home score by 1
       increaseScore("home");
       break;
-    case "e": // Increases away score by 1
+    case "F15": // Increases away score by 1
       increaseScore("away");
       break;
-    case "s": // Decreases home score by 1
+    case "F16": // Decreases home score by 1
       decreaseScore("home");
       break;
-    case "d": // Decreases away score by 1
+    case "F17": // Decreases away score by 1
       decreaseScore("away");
+      break;
+    case "F18":
+      toggleScoreboardVisibility();
       break;
   }
   document.addEventListener("keydown", keydownListener);
@@ -195,5 +198,25 @@ function decreaseScore(side: "home" | "away") {
         if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
       }
       return;
+  }
+}
+
+function hideElement(element: HTMLElement) {
+  element.style.visibility = "hidden";
+}
+
+function showElement(element: HTMLElement) {
+  element.style.visibility = "visible";
+}
+
+function toggleScoreboardVisibility() {
+  console.log("test");
+  const scoreboard = document.querySelector<HTMLElement>("#scoreboard");
+  if (scoreboard) {
+    if (scoreboard.style.visibility === "visible") {
+      hideElement(scoreboard);
+      return;
+    }
+    showElement(scoreboard);
   }
 }
