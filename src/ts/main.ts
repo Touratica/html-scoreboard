@@ -1,6 +1,6 @@
 let min: number = 25;
 let sec: number = 0;
-let millis: number = 0;
+let centiseconds: number = 0;
 
 type Score = {
   home: number;
@@ -20,6 +20,7 @@ let half: { [key: string]: string } = {
 let date: number = 0;
 
 let stopTime: boolean = true;
+let timeIncrement: -1 | 1 = -1;
 
 export function __init__() {
   const form: HTMLFormElement | null = document.querySelector("#settings");
@@ -66,7 +67,7 @@ export function __init__() {
       const time = (formData.get("timer-input") as string).split(":");
       min = parseInt(time[0]);
       sec = parseInt(time[1]);
-      millis = 0;
+      centiseconds = 0;
 
       const halfSetting = form.querySelector<HTMLElement>(
         "input[name='half']:checked"
@@ -75,10 +76,26 @@ export function __init__() {
       if (halfSetting && halfElement)
         halfElement.innerHTML =
           half[halfSetting.getAttribute("value") as string];
+
+      const countSetting = form.querySelector<HTMLElement>(
+        "input[name='count']:checked"
+      );
+      if (countSetting) {
+        switch (countSetting.getAttribute("value") as string) {
+          case "down":
+            timeIncrement = -1;
+            countdown(); // Sets timer in countdown mode
+            break;
+          case "up":
+            timeIncrement = 1;
+            countUp(); // Sets timer in count up mode
+            break;
+        }
+      }
     };
 
+  countdown(); // Sets timer in countdown mode by default
   document.addEventListener("keydown", keydownListener);
-  countdown(); // Sets timer in countdown mode
 }
 
 /**
@@ -122,11 +139,11 @@ function countdown() {
     let timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
 
-    millis -= timePassed;
+    centiseconds -= timePassed;
 
-    if (millis <= 0) {
+    if (centiseconds <= 0) {
       sec -= 1;
-      millis += 100;
+      centiseconds += 100;
     }
 
     if (sec < 0) {
@@ -136,23 +153,57 @@ function countdown() {
 
     if (min < 0) {
       stopTime = true;
-      setTimeout(countdown, 10);
-      return;
+      // The next few lines guarantee that the timer shows 0.00 when it reaches the end
+      min = 0;
+      sec = 0;
+      centiseconds = 0;
     }
 
     const timer = document.querySelector<HTMLElement>("#time");
     if (timer) {
       if (min > 0)
+        // If theres a minute or more on the timer, it shows minutes and seconds
         timer.innerHTML = `${min}:${
           sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
         }`;
+      // If theres less then a minute on the timer, it only shows the seconds with two decimal places
       else
         timer.innerHTML = `${sec}.${
-          millis >= 10 ? Math.floor(millis) : `0${Math.floor(millis)}`
+          centiseconds >= 10
+            ? Math.floor(centiseconds)
+            : `0${Math.floor(centiseconds)}`
         }`;
     }
   }
-  setTimeout(countdown, 10);
+  if (timeIncrement === -1) setTimeout(countdown, 10);
+}
+
+function countUp() {
+  if (!stopTime) {
+    let timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
+    date = Date.now();
+
+    centiseconds += timePassed;
+
+    if (centiseconds >= 100) {
+      sec += 1;
+      centiseconds -= 100;
+    }
+
+    if (sec > 59) {
+      min += 1;
+      sec = 0;
+    }
+
+    const timer = document.querySelector<HTMLElement>("#time");
+    if (timer) {
+      // The timer always shows minutes and seconds in count up mode
+      timer.innerHTML = `${min}:${
+        sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
+      }`;
+    }
+  }
+  if (timeIncrement === 1) setTimeout(countUp, 10);
 }
 
 function increaseScore(side: "home" | "away") {
