@@ -163,9 +163,7 @@ function countdown() {
     if (timer) {
       if (min > 0)
         // If theres a minute or more on the timer, it shows minutes and seconds
-        timer.innerHTML = `${min}:${
-          sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
-        }`;
+        timer.innerHTML = `${min}:${sec >= 10 ? sec : `0${sec}`}`;
       // If theres less then a minute on the timer, it only shows the seconds with two decimal places
       else
         timer.innerHTML = `${sec}.${
@@ -198,8 +196,8 @@ function countUp() {
     const timer = document.querySelector<HTMLElement>("#time");
     if (timer) {
       // The timer always shows minutes and seconds in count up mode
-      timer.innerHTML = `${min}:${
-        sec >= 10 ? Math.floor(sec) : `0${Math.floor(sec)}`
+      timer.innerHTML = `${min >= 10 ? min : `0${min}`}:${
+        sec >= 10 ? sec : `0${sec}`
       }`;
     }
   }
