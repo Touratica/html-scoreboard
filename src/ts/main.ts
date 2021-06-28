@@ -15,6 +15,7 @@ let score: Score = {
 let half: { [key: string]: string } = {
   first: "1P",
   second: "2P",
+  golden_goal: "GO",
 };
 
 let date: number = 0;
