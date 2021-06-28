@@ -260,13 +260,12 @@ function showElement(element: HTMLElement) {
 }
 
 function toggleScoreboardVisibility() {
-  console.log("test");
   const scoreboard = document.querySelector<HTMLElement>("#scoreboard");
   if (scoreboard) {
-    if (scoreboard.style.visibility === "visible") {
-      hideElement(scoreboard);
+    if (scoreboard.style.visibility === "hidden") {
+      showElement(scoreboard);
       return;
     }
-    showElement(scoreboard);
+    hideElement(scoreboard);
   }
 }
