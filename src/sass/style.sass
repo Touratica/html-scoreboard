@@ -1,10 +1,12 @@
+@use "sass:math"
+
 $COLOR: #232323
 $FONT-SIZE: 32px
 
 $HEIGHT: $FONT-SIZE * 1.4
 
 $TOP: 40px
-$LEFT: $TOP * 16 / 9
+$LEFT: math.div($TOP * 16, 9)
 body
 	font-family: sans-serif
 
