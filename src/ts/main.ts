@@ -2,6 +2,12 @@ let min: number = 25;
 let sec: number = 0;
 let centiseconds: number = 0;
 
+let halfMin: number;
+let halfSec: number;
+let halfCentiseconds: number;
+
+let hasTTO: boolean;
+
 type Score = {
   home: number;
   away: number;
@@ -93,6 +99,17 @@ export function __init__() {
             break;
         }
       }
+      const ttoSetting = form.querySelector<HTMLInputElement>(
+        "input[name='tto']"
+      );
+      if (ttoSetting && ttoSetting.checked) {
+        hasTTO = true;
+        halfMin = Math.floor(min / 2);
+        halfSec = Math.floor(sec / 2 + ((min / 2) % 1) * 60);
+        halfCentiseconds = Math.floor(
+          centiseconds / 2 + ((sec / 2 + ((min / 2) % 1) * 60) % 1) * 100
+        );
+      } else hasTTO = false;
     };
 
   countdown(); // Sets timer in countdown mode by default
@@ -150,6 +167,18 @@ function countdown() {
     if (sec < 0) {
       min -= 1;
       sec = 59;
+    }
+    if (
+      hasTTO &&
+      ((min == halfMin && sec == halfSec && centiseconds <= halfCentiseconds) ||
+        (min == halfMin && sec < halfSec) ||
+        min < halfMin)
+    ) {
+      hasTTO = false;
+      stopTime = true;
+      min = halfMin;
+      sec = halfSec;
+      centiseconds = halfCentiseconds;
     }
 
     if (min < 0) {
