@@ -31,4 +31,4 @@ Adding fade in/out animation to the scoreboard is in the plans, estimated to be 
 
 Proper localization is also something to tackle *ASAP*, with the first languages to be officialy supported being Portuguese (Portugal) and English (UK), estimated to be released as **v1.3.0**. 
 
-A complete restructuring of the project into modules is on the works. Being such a breaking change, it will be realeased as **v2.0.0**. The time of its completion may obviously change versioning of the previously mentioned releases.
+A complete restructuring of the project into modules is on the works. Being such a breaking change, it will be realeased as **v2.0.0**. The time of its completion may obviously change versioning of the previously mentioned releases. This version will also be accompanied by full documentation.
