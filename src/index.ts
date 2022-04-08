@@ -1,3 +1,5 @@
+import "./style.scss";
+
 let min: number = 25;
 let sec: number = 0;
 let centiseconds: number = 0;
@@ -29,7 +31,7 @@ let date: number = 0;
 let stopTime: boolean = true;
 let timeIncrement: -1 | 1 = -1;
 
-export function __init__() {
+function __init__() {
   const form: HTMLFormElement | null = document.querySelector("#settings");
 
   if (form)
@@ -42,9 +44,8 @@ export function __init__() {
         homeInitials.innerHTML = formData.get("home-team-input") as string;
 
       score.home = parseInt(formData.get("home-score-input") as string);
-      const homeScoreElement = document.querySelector<HTMLElement>(
-        "#home-score"
-      );
+      const homeScoreElement =
+        document.querySelector<HTMLElement>("#home-score");
       if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
 
       const homeColor = document.querySelector<HTMLElement>("#home-colors");
@@ -58,9 +59,8 @@ export function __init__() {
         awayTeam.innerHTML = formData.get("away-team-input") as string;
 
       score.away = parseInt(formData.get("away-score-input") as string);
-      const awayScoreElement = document.querySelector<HTMLElement>(
-        "#away-score"
-      );
+      const awayScoreElement =
+        document.querySelector<HTMLElement>("#away-score");
       if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
 
       const awayColor = document.querySelector<HTMLElement>("#away-colors");
@@ -99,9 +99,8 @@ export function __init__() {
             break;
         }
       }
-      const ttoSetting = form.querySelector<HTMLInputElement>(
-        "input[name='tto']"
-      );
+      const ttoSetting =
+        form.querySelector<HTMLInputElement>("input[name='tto']");
       if (ttoSetting && ttoSetting.checked) {
         hasTTO = true;
         halfMin = Math.floor(min / 2);
@@ -239,18 +238,16 @@ function increaseScore(side: "home" | "away") {
     case "home":
       if (score.home < 99) {
         score.home += 1;
-        const homeScoreElement = document.querySelector<HTMLElement>(
-          "#home-score"
-        );
+        const homeScoreElement =
+          document.querySelector<HTMLElement>("#home-score");
         if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
       }
       return;
     case "away":
       if (score.away < 99) {
         score.away += 1;
-        const awayScoreElement = document.querySelector<HTMLElement>(
-          "#away-score"
-        );
+        const awayScoreElement =
+          document.querySelector<HTMLElement>("#away-score");
         if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
       }
       return;
@@ -262,18 +259,16 @@ function decreaseScore(side: "home" | "away") {
     case "home":
       if (score.home > 0) {
         score.home -= 1;
-        const homeScoreElement = document.querySelector<HTMLElement>(
-          "#home-score"
-        );
+        const homeScoreElement =
+          document.querySelector<HTMLElement>("#home-score");
         if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
       }
       return;
     case "away":
       if (score.away > 0) {
         score.away -= 1;
-        const awayScoreElement = document.querySelector<HTMLElement>(
-          "#away-score"
-        );
+        const awayScoreElement =
+          document.querySelector<HTMLElement>("#away-score");
         if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
       }
       return;
@@ -298,3 +293,5 @@ function toggleScoreboardVisibility() {
     hideElement(scoreboard);
   }
 }
+
+__init__();
