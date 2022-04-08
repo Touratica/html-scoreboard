@@ -1,6 +1,6 @@
 {
   "name": "streamlabs-scoreboard",
-  "version": "1.0.0",
+  "version": "1.0.2-alpha.2",
   "description": "A HTML element with a scoreboard to use in Streamlabs OBS.",
   "main": "build/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/Touratica/streamlabs-scoreboard.git"
   },
-  "author": "João Pedro Almeida <joao.pedro.1999@outlook.pt>",
+  "author": "João Pedro Almeida <33964846+Touratica@users.norepley.github.com>",
   "license": "EUPL-1.2",
   "bugs": {
     "url": "https://github.com/Touratica/streamlabs-scoreboard/issues"
