@@ -2,14 +2,10 @@
   "name": "streamlabs-scoreboard",
   "version": "1.0.2-alpha.2",
   "description": "A HTML element with a scoreboard to use in Streamlabs OBS.",
-  "main": "build/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "run-p build:*",
-    "build:sass": "npx sass src/sass:build/css",
-    "build:ts": "npx tsc",
-    "debug": "run-p debug:*",
-    "debug:ts": "npx tsc -w",
-    "debug:sass": "npx sass --watch src/sass:build/css",
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --open --config webpack.dev.js",
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,12 +21,21 @@
   "homepage": "https://github.com/Touratica/streamlabs-scoreboard#readme",
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
-    "husky": "^6.0.0",
-    "lint-staged": "^10.5.4",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
     "npm-run-all": "^4.1.5",
-    "prettier": "2.2.1",
-    "sass": "^1.32.11",
-    "typescript": "^4.2.4"
+    "prettier": "2.6.2",
+    "sass": "^1.50.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-merge": "^5.8.0"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

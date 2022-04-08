@@ -1,9 +1,6 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "include": ["src/ts/**/*"],
   "compilerOptions": {
-    "outDir": "build/js",
-    "module": "ES2015",
-    "moduleResolution": "Node"
+    "sourceMap": true
   }
 }
