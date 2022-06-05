@@ -20,12 +20,6 @@ let score: Score = {
   away: 0,
 };
 
-let half: { [key: string]: string } = {
-  first: "1P",
-  second: "2P",
-  golden_goal: "GO",
-};
-
 let date: number = 0;
 
 let stopTime: boolean = true;
@@ -76,15 +70,18 @@ function __init__() {
       sec = parseInt(time[1]);
       centiseconds = 0;
 
-      const halfSetting = form.querySelector<HTMLElement>(
-        "input[name='half']:checked"
+      const halfSetting =
+        form.querySelector<HTMLInputElement>("input[name='half']");
+      const GOSetting = form.querySelector<HTMLInputElement>(
+        "input[name='golden_goal']"
       );
       const halfElement = document.querySelector<HTMLElement>("#half");
-      if (halfSetting && halfElement)
-        halfElement.innerHTML =
-          half[halfSetting.getAttribute("value") as string];
+      if (halfElement) {
+        if (GOSetting && GOSetting.checked) halfElement.innerHTML = `GO`;
+        else if (halfSetting) halfElement.innerHTML = `${halfSetting.value}P`;
+      }
 
-      const countSetting = form.querySelector<HTMLElement>(
+      const countSetting = form.querySelector<HTMLInputElement>(
         "input[name='count']:checked"
       );
       if (countSetting) {
@@ -99,16 +96,6 @@ function __init__() {
             break;
         }
       }
-      const ttoSetting =
-        form.querySelector<HTMLInputElement>("input[name='tto']");
-      if (ttoSetting && ttoSetting.checked) {
-        hasTTO = true;
-        halfMin = Math.floor(min / 2);
-        halfSec = Math.floor(sec / 2 + ((min / 2) % 1) * 60);
-        halfCentiseconds = Math.floor(
-          centiseconds / 2 + ((sec / 2 + ((min / 2) % 1) * 60) % 1) * 100
-        );
-      } else hasTTO = false;
     };
 
   countdown(); // Sets timer in countdown mode by default
