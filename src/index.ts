@@ -70,8 +70,7 @@ function __init__() {
       sec = parseInt(time[1]);
       centiseconds = 0;
 
-      const halfSetting =
-        form.querySelector<HTMLInputElement>("input[name='half']");
+      const halfSetting = form.querySelector<HTMLInputElement>("#half-input");
       const GOSetting = form.querySelector<HTMLInputElement>(
         "input[name='golden_goal']"
       );
