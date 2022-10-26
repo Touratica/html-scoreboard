@@ -25,7 +25,7 @@ let date: number = 0;
 let stopTime: boolean = true;
 let timeIncrement: -1 | 1 = -1;
 
-function __init__() {
+const __init__ = () => {
   const form: HTMLFormElement | null = document.querySelector("#settings");
 
   if (form)
@@ -99,7 +99,7 @@ function __init__() {
 
   countdown(); // Sets timer in countdown mode by default
   document.addEventListener("keydown", keydownListener);
-}
+};
 
 /**
  * Disables listener for keydown event, triggers the pressed key's corresponding
@@ -107,7 +107,7 @@ function __init__() {
  *
  * @param {KeyboardEvent} e - The event used to extract the pressed key
  */
-function keydownListener(e: KeyboardEvent) {
+const keydownListener = (e: KeyboardEvent) => {
   document.removeEventListener("keydown", keydownListener);
   switch (e.key) {
     case "F13": // Starts/stops the countdown timer
@@ -130,14 +130,14 @@ function keydownListener(e: KeyboardEvent) {
       break;
   }
   document.addEventListener("keydown", keydownListener);
-}
+};
 
-function toggleTimer() {
+const toggleTimer = () => {
   stopTime = !stopTime;
   date = Date.now();
-}
+};
 
-function countdown() {
+const countdown = () => {
   if (!stopTime) {
     const timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
@@ -189,9 +189,9 @@ function countdown() {
     }
   }
   if (timeIncrement === -1) setTimeout(countdown, 10);
-}
+};
 
-function countUp() {
+const countUp = () => {
   if (!stopTime) {
     const timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
@@ -217,9 +217,9 @@ function countUp() {
     }
   }
   if (timeIncrement === 1) setTimeout(countUp, 10);
-}
+};
 
-function increaseScore(side: "home" | "away") {
+const increaseScore = (side: "home" | "away") => {
   switch (side) {
     case "home":
       if (score.home < 99) {
@@ -238,9 +238,9 @@ function increaseScore(side: "home" | "away") {
       }
       return;
   }
-}
+};
 
-function decreaseScore(side: "home" | "away") {
+const decreaseScore = (side: "home" | "away") => {
   switch (side) {
     case "home":
       if (score.home > 0) {
@@ -259,17 +259,17 @@ function decreaseScore(side: "home" | "away") {
       }
       return;
   }
-}
+};
 
-function hideElement(element: HTMLElement) {
+const hideElement = (element: HTMLElement) => {
   element.style.opacity = "0";
-}
+};
 
-function showElement(element: HTMLElement) {
+const showElement = (element: HTMLElement) => {
   element.style.opacity = "1";
-}
+};
 
-function toggleScoreboardVisibility() {
+const toggleScoreboardVisibility = () => {
   const scoreboard = document.querySelector<HTMLElement>("#scoreboard");
   if (scoreboard) {
     if (scoreboard.style.opacity === "0") {
@@ -278,6 +278,6 @@ function toggleScoreboardVisibility() {
     }
     hideElement(scoreboard);
   }
-}
+};
 
 __init__();
