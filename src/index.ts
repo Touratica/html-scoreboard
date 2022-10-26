@@ -139,7 +139,7 @@ function toggleTimer() {
 
 function countdown() {
   if (!stopTime) {
-    let timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
+    const timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
 
     centiseconds -= timePassed;
@@ -193,7 +193,7 @@ function countdown() {
 
 function countUp() {
   if (!stopTime) {
-    let timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
+    const timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
 
     centiseconds += timePassed;
