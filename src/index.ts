@@ -262,17 +262,17 @@ function decreaseScore(side: "home" | "away") {
 }
 
 function hideElement(element: HTMLElement) {
-  element.style.visibility = "hidden";
+  element.style.opacity = "0";
 }
 
 function showElement(element: HTMLElement) {
-  element.style.visibility = "visible";
+  element.style.opacity = "1";
 }
 
 function toggleScoreboardVisibility() {
   const scoreboard = document.querySelector<HTMLElement>("#scoreboard");
   if (scoreboard) {
-    if (scoreboard.style.visibility === "hidden") {
+    if (scoreboard.style.opacity === "0") {
       showElement(scoreboard);
       return;
     }
