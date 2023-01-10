@@ -1,39 +1,48 @@
 {
-  "name": "streamlabs-scoreboard",
-  "version": "1.1.1",
-  "description": "A HTML element with a scoreboard to use in Streamlabs OBS.",
-  "main": "index.js",
+  "name": "@touratica/html-scoreboard",
+  "version": "0.0.0-development",
+  "description": "Self-serving HTML scoreboard.",
+  "main": "src/http-server.js",
+  "files": [
+    "src/http-sever.js",
+    "dist"
+  ],
+  "bin": "src/http-server.js",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "semantic-release": "semantic-release",
+    "prepack": "npm run build",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Touratica/streamlabs-scoreboard.git"
+    "url": "https://github.com/Touratica/html-scoreboard.git"
   },
-  "author": "João Pedro Almeida <33964846+Touratica@users.norepley.github.com>",
+  "author": "João Pedro Almeida <me@touratica.pt> (https://github.com/Touratica)",
   "license": "EUPL-1.2",
   "bugs": {
-    "url": "https://github.com/Touratica/streamlabs-scoreboard/issues"
+    "url": "https://github.com/Touratica/html-scoreboard/issues"
   },
-  "homepage": "https://github.com/Touratica/streamlabs-scoreboard#readme",
+  "homepage": "https://github.com/Touratica/html-scoreboard#readme",
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
     "@webpack-cli/generators": "^3.0.1",
     "autoprefixer": "^10.4.13",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^8.0.2",
+    "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "mini-css-extract-plugin": "^2.7.2",
-    "postcss": "^8.4.20",
+    "postcss": "^8.4.21",
     "postcss-loader": "^7.0.2",
     "prettier": "2.8.1",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
+    "semantic-release": "^20.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.4",
@@ -43,5 +52,8 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
   }
 }
