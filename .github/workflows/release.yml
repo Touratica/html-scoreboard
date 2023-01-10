@@ -1,12 +1,12 @@
 name: Release
 on:
-  workflow_run:
-    workflows: ["Tests"]
-    branches: [main]
-    types:
-      - completed
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
 jobs:
-  on_success:
+  release:
     name: Release
     runs-on: ubuntu-latest
     steps:
