@@ -1,25 +1,29 @@
 # streamlabs-scoreboard
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Touratica/streamlabs-scoreboard)
-![David](https://img.shields.io/david/dev/Touratica/streamlabs-scoreboard)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 [![GitHub issues](https://img.shields.io/github/issues/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/issues)
 [![GitHub forks](https://img.shields.io/github/forks/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/network)
 [![GitHub stars](https://img.shields.io/github/stars/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/stargazers)
 [![GitHub license](https://img.shields.io/github/license/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/blob/main/LICENSE)
+![npm](https://img.shields.io/npm/dw/@touratica/html-scoreboard)
 
-A purposely created set containing HTML, CSS (preprocessed Sass) and JavaScript (transpiled TypeScript) files to be used
-as a Browser Source in Streamlabs OBS, in order to add a programmable scoreboard to a Scene.
+A purposely created self-served HTML scoreboard to be used in sports' matches' live streams.
 
 ## Introduction
 
 ### Motivations
 
-This piece of code was motivated by the need of having an electronic programmable scoreboard in Streamlabs OBS, with
+This piece of code was motivated by the need of having an electronic programmable scoreboard in Streamlabs, with
 quick and simple controls, in order to use said program to broadcast the Portuguese first tier division national league
 matches of korfball on YouTube, starting May 1, 2021.
 
 ## Roadmap
+
+### 10/01/2023
+
+The software continues to be used without hiccups several times per week. No known bugs are known at the moment, but new features are still programmed to be added.
+Version **[v2.0.0](https://github.com/Touratica/streamlabs-scoreboard/releases/tag/v2.0.0)** was just released, but not with what was antecipated to be in it. Instead, it made the package self-serving, which means there's no need to use another program to serve the html/css/js files. It was also published to npm.
 
 ### 27/06/2021
 
@@ -29,6 +33,6 @@ The intention is to continue adding those missing vital functionalities and fixi
 
 Adding fade in/out animation to the scoreboard is in the plans, estimated to be released as **v1.2.0**.
 
-Proper localization is also something to tackle *ASAP*, with the first languages to be officialy supported being Portuguese (Portugal) and English (UK), estimated to be released as **v1.3.0**. 
+Proper localization is also something to tackle _ASAP_, with the first languages to be officialy supported being Portuguese (Portugal) and English (UK), estimated to be released as **v1.3.0**.
 
 A complete restructuring of the project into modules is on the works. Being such a breaking change, it will be realeased as **v2.0.0**. The time of its completion may obviously change versioning of the previously mentioned releases. This version will also be accompanied by full documentation.
