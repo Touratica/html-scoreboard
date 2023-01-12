@@ -1,11 +1,11 @@
 # streamlabs-scoreboard
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Touratica/streamlabs-scoreboard)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Touratica/html-scoreboard)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
-[![GitHub issues](https://img.shields.io/github/issues/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/issues)
-[![GitHub forks](https://img.shields.io/github/forks/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/network)
-[![GitHub stars](https://img.shields.io/github/stars/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/stargazers)
-[![GitHub license](https://img.shields.io/github/license/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/streamlabs-scoreboard/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/html-scoreboard/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/html-scoreboard/network)
+[![GitHub stars](https://img.shields.io/github/stars/Touratica/streamlabs-scoreboard)](https://github.com/Touratica/html-scoreboard/stargazers)
+![GitHub](https://img.shields.io/github/license/Touratica/html-scoreboard)
 ![npm](https://img.shields.io/npm/dw/@touratica/html-scoreboard)
 
 A purposely created self-served HTML scoreboard to be used in sports' matches' live streams.
