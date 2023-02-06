@@ -25,6 +25,8 @@ let date: number = 0;
 let stopTime: boolean = true;
 let timeIncrement: -1 | 1 = -1;
 
+let timerFunction: NodeJS.Timer;
+
 function initialize() {
   const form = document.querySelector<HTMLFormElement>("#settings");
 
@@ -84,20 +86,20 @@ function initialize() {
         "input[name='count']:checked"
       );
       if (countSetting) {
+        clearInterval(timerFunction);
         switch (countSetting.getAttribute("value") as string) {
           case "down":
             timeIncrement = -1;
-            countdown(); // Sets timer in countdown mode
+            timerFunction = setInterval(countdown, 10); // Sets timer in countdown mode
             break;
           case "up":
             timeIncrement = 1;
-            countUp(); // Sets timer in count up mode
+            timerFunction = setInterval(countUp, 10); // Sets timer in count up mode
             break;
         }
       }
     };
 
-  countdown(); // Sets timer in countdown mode by default
   document.addEventListener("keydown", keydownListener);
 }
 
@@ -167,6 +169,7 @@ function countdown() {
     }
 
     if (min < 0) {
+      clearInterval(timerFunction);
       stopTime = true;
       // The next few lines guarantee that the timer shows 0.00 when it reaches the end
       min = 0;
@@ -188,7 +191,6 @@ function countdown() {
         }`;
     }
   }
-  if (timeIncrement === -1) setTimeout(countdown, 10);
 }
 
 function countUp() {
@@ -216,7 +218,6 @@ function countUp() {
       }`;
     }
   }
-  if (timeIncrement === 1) setTimeout(countUp, 10);
 }
 
 function increaseScore(side: "home" | "away") {
