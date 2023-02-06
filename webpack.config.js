@@ -2,6 +2,7 @@
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
@@ -20,6 +21,13 @@ const config = {
     host: "localhost",
   },
   plugins: [
+    new FaviconsWebpackPlugin({
+      logo: "./assets/favicon.svg",
+      favicons: {
+        background: "#fff",
+        theme_color: "#fff",
+      },
+    }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
     }),
