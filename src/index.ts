@@ -1,5 +1,10 @@
 import "./style.scss";
 
+type Score = {
+  home: number;
+  away: number;
+};
+
 let min: number = 25;
 let sec: number = 0;
 let centiseconds: number = 0;
@@ -9,11 +14,6 @@ let halfSec: number;
 let halfCentiseconds: number;
 
 let hasTTO: boolean;
-
-type Score = {
-  home: number;
-  away: number;
-};
 
 let score: Score = {
   home: 0,
@@ -25,8 +25,8 @@ let date: number = 0;
 let stopTime: boolean = true;
 let timeIncrement: -1 | 1 = -1;
 
-const __init__ = () => {
-  const form: HTMLFormElement | null = document.querySelector("#settings");
+function initialize() {
+  const form = document.querySelector<HTMLFormElement>("#settings");
 
   if (form)
     form.onsubmit = (e) => {
@@ -99,7 +99,7 @@ const __init__ = () => {
 
   countdown(); // Sets timer in countdown mode by default
   document.addEventListener("keydown", keydownListener);
-};
+}
 
 /**
  * Disables listener for keydown event, triggers the pressed key's corresponding
@@ -107,7 +107,7 @@ const __init__ = () => {
  *
  * @param {KeyboardEvent} e - The event used to extract the pressed key
  */
-const keydownListener = (e: KeyboardEvent) => {
+function keydownListener(e: KeyboardEvent) {
   document.removeEventListener("keydown", keydownListener);
   switch (e.key) {
     case "F13": // Starts/stops the countdown timer
@@ -130,14 +130,14 @@ const keydownListener = (e: KeyboardEvent) => {
       break;
   }
   document.addEventListener("keydown", keydownListener);
-};
+}
 
-const toggleTimer = () => {
+function toggleTimer() {
   stopTime = !stopTime;
   date = Date.now();
-};
+}
 
-const countdown = () => {
+function countdown() {
   if (!stopTime) {
     const timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
@@ -189,9 +189,9 @@ const countdown = () => {
     }
   }
   if (timeIncrement === -1) setTimeout(countdown, 10);
-};
+}
 
-const countUp = () => {
+function countUp() {
   if (!stopTime) {
     const timePassed = (Date.now() - date) / 10; // Check for how long it's been since the last time the next line ran
     date = Date.now();
@@ -217,9 +217,9 @@ const countUp = () => {
     }
   }
   if (timeIncrement === 1) setTimeout(countUp, 10);
-};
+}
 
-const increaseScore = (side: "home" | "away") => {
+function increaseScore(side: "home" | "away") {
   switch (side) {
     case "home":
       if (score.home < 99) {
@@ -238,9 +238,9 @@ const increaseScore = (side: "home" | "away") => {
       }
       return;
   }
-};
+}
 
-const decreaseScore = (side: "home" | "away") => {
+function decreaseScore(side: "home" | "away") {
   switch (side) {
     case "home":
       if (score.home > 0) {
@@ -259,17 +259,17 @@ const decreaseScore = (side: "home" | "away") => {
       }
       return;
   }
-};
+}
 
-const hideElement = (element: HTMLElement) => {
+function hideElement(element: HTMLElement) {
   element.style.opacity = "0";
-};
+}
 
-const showElement = (element: HTMLElement) => {
+function showElement(element: HTMLElement) {
   element.style.opacity = "1";
-};
+}
 
-const toggleScoreboardVisibility = () => {
+function toggleScoreboardVisibility() {
   const scoreboard = document.querySelector<HTMLElement>("#scoreboard");
   if (scoreboard) {
     if (scoreboard.style.opacity === "0") {
@@ -278,6 +278,6 @@ const toggleScoreboardVisibility = () => {
     }
     hideElement(scoreboard);
   }
-};
+}
 
-__init__();
+initialize();
