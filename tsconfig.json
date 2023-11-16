@@ -1,6 +1,13 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig",
+  "extends": [
+    "@tsconfig/recommended/tsconfig",
+    "@tsconfig/node-lts/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json"
+  ],
   "compilerOptions": {
+    "lib": ["DOM"],
     "sourceMap": true
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

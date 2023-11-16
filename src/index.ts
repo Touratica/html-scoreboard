@@ -1,4 +1,4 @@
-import "./style.scss";
+import "./styles/style.scss";
 
 type Score = {
   home: number;
@@ -23,7 +23,6 @@ let score: Score = {
 let date: number = 0;
 
 let stopTime: boolean = true;
-let timeIncrement: -1 | 1 = -1;
 
 let timerFunction: NodeJS.Timer;
 
@@ -47,7 +46,7 @@ function initialize() {
       const homeColor = document.querySelector<HTMLElement>("#home-colors");
       if (homeColor)
         homeColor.style.backgroundColor = formData.get(
-          "home-color-input"
+          "home-color-input",
         ) as string;
 
       const awayTeam = document.querySelector<HTMLElement>("#away");
@@ -62,19 +61,19 @@ function initialize() {
       const awayColor = document.querySelector<HTMLElement>("#away-colors");
       if (awayColor)
         awayColor.style.backgroundColor = formData.get(
-          "away-color-input"
+          "away-color-input",
         ) as string;
 
       const timer = document.querySelector<HTMLElement>("#time");
       if (timer) timer.innerHTML = formData.get("timer-input") as string;
       const time = (formData.get("timer-input") as string).split(":");
-      min = parseInt(time[0]);
-      sec = parseInt(time[1]);
+      min = parseInt(time[0]!);
+      sec = parseInt(time[1]!);
       centiseconds = 0;
 
       const halfSetting = form.querySelector<HTMLInputElement>("#half-input");
       const GOSetting = form.querySelector<HTMLInputElement>(
-        "input[name='golden_goal']"
+        "input[name='golden_goal']",
       );
       const halfElement = document.querySelector<HTMLElement>("#half");
       if (halfElement) {
@@ -83,17 +82,15 @@ function initialize() {
       }
 
       const countSetting = form.querySelector<HTMLInputElement>(
-        "input[name='count']:checked"
+        "input[name='count']:checked",
       );
       if (countSetting) {
         clearInterval(timerFunction);
         switch (countSetting.getAttribute("value") as string) {
           case "down":
-            timeIncrement = -1;
             timerFunction = setInterval(countdown, 10); // Sets timer in countdown mode
             break;
           case "up":
-            timeIncrement = 1;
             timerFunction = setInterval(countUp, 10); // Sets timer in count up mode
             break;
         }
