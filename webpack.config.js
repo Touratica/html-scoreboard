@@ -4,6 +4,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ShebangPlugin = require("webpack-shebang-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 
@@ -12,35 +13,41 @@ const stylesHandler = isProduction
   : "style-loader";
 
 const config = {
-  entry: "./src/index.ts",
+  entry: {
+    main: ["./src/index.ts"],
+    server: ["./src/server/index.ts"],
+  },
+
   output: {
     path: path.resolve(__dirname, "dist"),
   },
+  devtool: "inline-source-map",
   devServer: {
     open: true,
     host: "localhost",
   },
+  target: "node12",
   plugins: [
+    // Add your plugins here
+    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     new FaviconsWebpackPlugin({
-      logo: "./assets/favicon.svg",
+      logo: "./public/favicon.svg",
       favicons: {
         background: "#fff",
         theme_color: "#fff",
       },
     }),
     new HtmlWebpackPlugin({
-      template: "public/index.html",
+      template: "./src/index.html",
     }),
-
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+    new ShebangPlugin(),
   ],
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/i,
+        test: /\.tsx?$/,
         loader: "ts-loader",
-        exclude: ["/node_modules/"],
+        exclude: "/node_modules/",
       },
       {
         test: /\.s[ac]ss$/i,
@@ -60,7 +67,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", "..."],
+    extensions: [".tsx", ".ts", ".js"],
   },
 };
 
