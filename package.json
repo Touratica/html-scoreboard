@@ -9,11 +9,10 @@
   "license": "EUPL-1.2",
   "author": "João Pedro Almeida <me@touratica.pt> (https://github.com/Touratica)",
   "files": [
-    "src/http-sever.js",
     "dist"
   ],
-  "main": "src/http-server.js",
-  "bin": "src/http-server.js",
+  "main": "dist/server.js",
+  "bin": "dist/server.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Touratica/html-scoreboard.git"
@@ -35,6 +34,7 @@
     "@tsconfig/node-lts": "^20.1.1",
     "@tsconfig/recommended": "^1.0.3",
     "@tsconfig/strictest": "^2.0.2",
+    "@types/http-server": "^0.12.4",
     "@webpack-cli/generators": "^3.0.7",
     "autoprefixer": "^10.4.16",
     "css-loader": "^6.9.0",
