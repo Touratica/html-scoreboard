@@ -20,6 +20,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, "dist"),
+    clean: isProduction,
   },
   devtool: "inline-source-map",
   devServer: {
@@ -48,10 +49,6 @@ const config = {
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: "/node_modules/",
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader", "sass-loader"],
       },
       {
         test: /\.css$/i,

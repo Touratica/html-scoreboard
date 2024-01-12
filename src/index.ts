@@ -1,4 +1,4 @@
-import "./styles/style.scss";
+import "./styles/globals.css";
 
 type Score = {
   home: number;
@@ -207,7 +207,7 @@ function countUp() {
       sec = 0;
     }
 
-    const timer = document.querySelector<HTMLElement>("#time");
+    const timer = document.querySelector<HTMLDivElement>("#time");
     if (timer) {
       // The timer always shows minutes and seconds in count up mode
       timer.innerHTML = `${min >= 10 ? min : `0${min}`}:${

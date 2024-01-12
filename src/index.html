@@ -1,40 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scoreboard</title>
+    <link rel="stylesheet" href="styles/globals.css" />
   </head>
-  <body>
-    <div id="scoreboard" class="">
-      <div id="scores" class="">
-        <div id="home-colors" class="team-colors"></div>
-        <div class="team" id="home">XXXXX</div>
-        <div id="score" class="">
-          <div id="home-score" class="score number">0</div>
-          <div class="score">-</div>
-          <div id="away-score" class="score number">0</div>
+  <!-- TODO: Swap next lines -->
+  <!-- <body class="font-sans"> -->
+  <body class="flex justify-between gap-10 bg-black font-sans">
+    <main class="text-3xl">
+      <div
+        id="scoreboard"
+        class="ml-16 mt-8 flex text-white transition-opacity duration-500"
+      >
+        <div id="scores" class="flex h-11">
+          <div id="home-colors" class="w-1 bg-red-600"></div>
+          <div
+            id="home"
+            class="flex min-w-36 items-center justify-center bg-neutral-800 bg-opacity-90 px-2"
+          >
+            XXXXX
+          </div>
+          <div id="score" class="flex bg-neutral-800 bg-opacity-70">
+            <div
+              id="home-score"
+              class="ml-2.5 flex w-10 items-center justify-center"
+            >
+              0
+            </div>
+            <div class="flex items-center justify-center">-</div>
+            <div
+              id="away-score"
+              class="mr-2.5 flex w-10 items-center justify-center"
+            >
+              0
+            </div>
+          </div>
+          <div
+            id="away"
+            class="flex min-w-36 items-center justify-center bg-neutral-800 bg-opacity-90 px-2"
+          >
+            XXXXX
+          </div>
+          <div id="away-colors" class="w-1 bg-red-600"></div>
         </div>
-        <div class="team" id="away">XXXXX</div>
-        <div id="away-colors" class="team-colors"></div>
+        <div
+          id="time"
+          class="flex min-w-24 items-center justify-center bg-neutral-800 bg-opacity-70 px-2"
+        >
+          12:30
+        </div>
+        <div
+          id="half"
+          class="flex min-w-[51.2px] items-center justify-center bg-yellow-500 px-1 text-neutral-700"
+        >
+          1P
+        </div>
       </div>
-      <div id="time" class="">12:30</div>
-      <div class="" id="half">1P</div>
-    </div>
-    <form id="settings">
-      <div id="home-settings">
-        <div>
-          <label for="home-team-input">Home team:</label>
+    </main>
+    <form
+      id="settings"
+      class="mr-16 mt-8 flex flex-col gap-2 rounded-xl bg-white bg-opacity-50 p-[1%]"
+    >
+      <div id="home-settings" class="flex flex-col gap-1">
+        <div class="flex gap-1">
+          <label for="home-team-input" class="min-w-24 font-semibold">
+            Home team:
+          </label>
           <input
             type="text"
             name="home-team-input"
             id="home-team-input"
             placeholder="Team initials"
+            class="flex-grow px-1"
           />
         </div>
-        <div>
-          <label for="home-score-input">Score:</label>
+        <div class="flex gap-1">
+          <label for="home-score-input" class="min-w-24 font-semibold">
+            Score:
+          </label>
           <input
             type="number"
             name="home-score-input"
@@ -42,10 +87,13 @@
             min="0"
             max="99"
             value="0"
+            class="flex-grow px-1"
           />
         </div>
-        <div>
-          <label for="home-color-input">Color:</label>
+        <div class="flex gap-1">
+          <label for="home-color-input" class="min-w-24 font-semibold">
+            Color:
+          </label>
           <input
             id="home-color-input"
             name="home-color-input"
@@ -53,21 +101,27 @@
             type="text"
             title="Color hex code (ex: #FF0000)"
             pattern="^#[0-9A-Fa-f]{6}$"
+            class="flex-grow px-1"
           />
         </div>
       </div>
-      <div id="away-settings">
-        <div>
-          <label for="away-team-input">Away team:</label>
+      <div id="away-settings" class="flex flex-col gap-1">
+        <div class="flex gap-1">
+          <label for="away-team-input" class="min-w-24 font-semibold">
+            Away team:
+          </label>
           <input
             type="text"
             name="away-team-input"
             id="away-team-input"
             placeholder="Team initials"
+            class="flex-grow px-1"
           />
         </div>
-        <div>
-          <label for="away-score-input">Score:</label>
+        <div class="flex gap-1">
+          <label for="away-score-input" class="min-w-24 font-semibold">
+            Score:
+          </label>
           <input
             type="number"
             name="away-score-input"
@@ -75,10 +129,13 @@
             min="0"
             max="99"
             value="0"
+            class="flex-grow px-1"
           />
         </div>
-        <div>
-          <label for="away-color-input">Color:</label>
+        <div class="flex gap-1">
+          <label for="away-color-input" class="min-w-24 font-semibold">
+            Color:
+          </label>
           <input
             id="away-color-input"
             name="away-color-input"
@@ -86,12 +143,13 @@
             type="text"
             title="Color hex code (ex: #FF0000)"
             pattern="^#[0-9A-Fa-f]{6}$"
+            class="flex-grow px-1"
           />
         </div>
       </div>
-      <div id="time-settings">
-        <div>
-          <label for="timer-input">Timer:</label>
+      <div id="time-settings" class="flex flex-col gap-1">
+        <div class="flex gap-1">
+          <label for="timer-input" class="min-w-24 font-semibold">Timer:</label>
           <input
             type="text"
             name="timer-input"
@@ -99,42 +157,60 @@
             value="12:30"
             title="M:SS (ex: 12:30)"
             pattern="^[0-9]+:[0-5][0-9]$"
+            class="flex-grow px-1"
           />
         </div>
-        <div>
-          <label>Half:</label>
-          <input
-            id="half-input"
-            type="number"
-            min="1"
-            max="9"
-            value="1"
-            required
-          />
-          <label class="half" for="golden-goal">GO</label>
-          <input
-            id="golden-goal"
-            name="golden_goal"
-            type="checkbox"
-            value="golden_goal"
-          />
+        <div class="flex gap-1">
+          <label for="half-input" class="min-w-24 font-semibold">Half:</label>
+          <div class="flex flex-grow gap-2">
+            <input
+              id="half-input"
+              type="number"
+              min="1"
+              value="1"
+              required
+              class="h-fit flex-grow px-1"
+            />
+            <div class="flex gap-1">
+              <label for="golden-goal">GO</label>
+              <input
+                id="golden-goal"
+                name="golden_goal"
+                type="checkbox"
+                value="golden_goal"
+                title="Golden goal"
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Count:</label>
-          <label class="count" for="count-down">down</label>
-          <input
-            checked
-            id="count-down"
-            name="count"
-            type="radio"
-            value="down"
-          />
-          <label class="count" for="count-up">up</label>
-          <input id="count-up" name="count" type="radio" value="up" />
+        <div class="flex gap-1">
+          <p class="min-w-24 font-semibold">Count:</p>
+          <div class="flex gap-2">
+            <div>
+              <label for="count-down">down</label>
+              <input
+                checked
+                id="count-down"
+                name="count"
+                type="radio"
+                value="down"
+              />
+            </div>
+            <div>
+              <label for="count-up">up</label>
+              <input id="count-up" name="count" type="radio" value="up" />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="submit">
-        <button type="submit" id="submit">Submit</button>
+      <div class="mt-1 block text-right">
+        <button
+          type="submit"
+          id="submit"
+          class="rounded-sm bg-neutral-200 px-2 py-0.5"
+        >
+          Submit
+        </button>
       </div>
     </form>
   </body>
