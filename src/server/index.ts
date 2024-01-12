@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { createServer } from "http-server";
+import path from "path";
 
-const path = require("path");
 const port = 8080;
 
 const root = path.resolve(__dirname);

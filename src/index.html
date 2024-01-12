@@ -6,7 +6,8 @@
     <title>Scoreboard</title>
     <link rel="stylesheet" href="styles/globals.css" />
   </head>
-  <body class="flex justify-between gap-10 font-sans">
+  <!-- XXX: Remove bg-black -->
+  <body class="flex justify-between gap-10 bg-black font-sans">
     <main class="text-3xl">
       <div
         id="scoreboard"
@@ -71,7 +72,7 @@
             name="home-team-input"
             id="home-team-input"
             placeholder="Team initials"
-            class="flex-grow px-1"
+            class="flex-grow rounded-sm px-1"
           />
         </div>
         <div class="flex gap-1">
@@ -85,7 +86,7 @@
             min="0"
             max="99"
             value="0"
-            class="flex-grow pl-1"
+            class="flex-grow rounded-sm pl-1"
           />
         </div>
         <div class="flex gap-1">
@@ -99,7 +100,7 @@
             type="text"
             title="Color hex code (ex: #FF0000)"
             pattern="^#[0-9A-Fa-f]{6}$"
-            class="flex-grow px-1"
+            class="flex-grow rounded-sm px-1"
           />
         </div>
       </div>
@@ -113,7 +114,7 @@
             name="away-team-input"
             id="away-team-input"
             placeholder="Team initials"
-            class="flex-grow px-1"
+            class="flex-grow rounded-sm px-1"
           />
         </div>
         <div class="flex gap-1">
@@ -127,7 +128,7 @@
             min="0"
             max="99"
             value="0"
-            class="flex-grow pl-1"
+            class="flex-grow rounded-sm pl-1"
           />
         </div>
         <div class="flex gap-1">
@@ -141,7 +142,7 @@
             type="text"
             title="Color hex code (ex: #FF0000)"
             pattern="^#[0-9A-Fa-f]{6}$"
-            class="flex-grow px-1"
+            class="flex-grow rounded-sm px-1"
           />
         </div>
       </div>
@@ -155,7 +156,7 @@
             value="12:30"
             title="M:SS (ex: 12:30)"
             pattern="^[0-9]+:[0-5][0-9]$"
-            class="flex-grow px-1"
+            class="flex-grow rounded-sm px-1"
           />
         </div>
         <div class="flex gap-1">
@@ -167,7 +168,7 @@
               min="1"
               value="1"
               required
-              class="h-fit flex-grow pl-1"
+              class="h-fit flex-grow rounded-sm pl-1"
             />
             <div class="flex gap-1">
               <label for="golden-goal">GO</label>
