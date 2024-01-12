@@ -28,7 +28,8 @@
     "semantic-release": "semantic-release",
     "prepack": "npm run build",
     "start": "node .",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "prepare": "husky install"
   },
   "dependencies": {
     "http-server": "^14.1.1"
@@ -79,7 +80,9 @@
     ]
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown",
-    "**/*.{js,jsx,ts,tsx,html}": "eslint --fix"
+    "**/*": [
+      "eslint",
+      "prettier --write --ignore-unknown"
+    ]
   }
 }
