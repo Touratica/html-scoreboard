@@ -6,11 +6,9 @@ const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ShebangPlugin = require("webpack-shebang-plugin");
 
-const isProduction = process.env.NODE_ENV == "production";
+const dev = process.env.NODE_ENV !== "production";
 
-const stylesHandler = isProduction
-  ? MiniCssExtractPlugin.loader
-  : "style-loader";
+const stylesHandler = !dev ? MiniCssExtractPlugin.loader : "style-loader";
 
 const config = {
   entry: {
@@ -20,7 +18,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, "dist"),
-    clean: isProduction,
+    clean: !dev,
   },
   devtool: "inline-source-map",
   devServer: {
@@ -33,10 +31,12 @@ const config = {
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     new FaviconsWebpackPlugin({
       logo: "./public/favicon.svg",
+      mode: "auto",
       favicons: {
         background: "#fff",
         theme_color: "#fff",
       },
+      dev,
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
@@ -69,7 +69,7 @@ const config = {
 };
 
 module.exports = () => {
-  if (isProduction) {
+  if (!dev) {
     config.mode = "production";
 
     config.plugins.push(new MiniCssExtractPlugin());
