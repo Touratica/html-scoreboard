@@ -34,59 +34,62 @@ function initialize() {
       e.preventDefault(); // Prevents page from reloading when form is submitted
       const formData = new FormData(form);
 
-      const homeInitials = document.querySelector<HTMLElement>("#home");
+      const homeInitials =
+        document.querySelector<HTMLParagraphElement>("#home");
       if (homeInitials)
         homeInitials.innerHTML = formData.get("home-team-input") as string;
 
       score.home = parseInt(formData.get("home-score-input") as string);
       const homeScoreElement =
-        document.querySelector<HTMLElement>("#home-score");
+        document.querySelector<HTMLParagraphElement>("#home-score");
       if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
 
-      const homeColor = document.querySelector<HTMLElement>("#home-colors");
+      const homeColor = document.querySelector<HTMLDivElement>("#home-colors");
       if (homeColor)
         homeColor.style.backgroundColor = formData.get(
           "home-color-input",
         ) as string;
 
-      const awayTeam = document.querySelector<HTMLElement>("#away");
+      const awayTeam = document.querySelector<HTMLParagraphElement>("#away");
       if (awayTeam)
         awayTeam.innerHTML = formData.get("away-team-input") as string;
 
       score.away = parseInt(formData.get("away-score-input") as string);
       const awayScoreElement =
-        document.querySelector<HTMLElement>("#away-score");
+        document.querySelector<HTMLParagraphElement>("#away-score");
       if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
 
-      const awayColor = document.querySelector<HTMLElement>("#away-colors");
+      const awayColor = document.querySelector<HTMLDivElement>("#away-colors");
       if (awayColor)
         awayColor.style.backgroundColor = formData.get(
           "away-color-input",
         ) as string;
 
-      const timer = document.querySelector<HTMLElement>("#time");
+      const timer = document.querySelector<HTMLParagraphElement>("#time");
       if (timer) timer.innerHTML = formData.get("timer-input") as string;
       const time = (formData.get("timer-input") as string).split(":");
       min = parseInt(time[0]!);
       sec = parseInt(time[1]!);
       centiseconds = 0;
 
-      const halfSetting = form.querySelector<HTMLInputElement>("#half-input");
-      const GOSetting = form.querySelector<HTMLInputElement>(
-        "input[name='golden_goal']",
-      );
-      const halfElement = document.querySelector<HTMLElement>("#half");
+      const halfSetting = formData.get("half-input");
+      const GOSetting = formData.get("golden_goal");
+
+      const halfElement = document.querySelector<HTMLParagraphElement>("#half");
       if (halfElement) {
-        if (GOSetting && GOSetting.checked) halfElement.innerHTML = `GO`;
-        else if (halfSetting) halfElement.innerHTML = `${halfSetting.value}P`;
+        if (GOSetting) halfElement.innerHTML = `GO`;
+        else if (halfSetting) halfElement.innerHTML = `${halfSetting}P`;
       }
 
-      const countSetting = form.querySelector<HTMLInputElement>(
-        "input[name='count']:checked",
-      );
+      // const countSetting = form.querySelector<HTMLInputElement>(
+      //   "input[name='count']:checked",
+      // );
+      const countSetting = formData.get("count");
+      console.log(countSetting);
+
       if (countSetting) {
         clearInterval(timerFunction);
-        switch (countSetting.getAttribute("value") as string) {
+        switch (countSetting) {
           case "down":
             timerFunction = setInterval(countdown, 10); // Sets timer in countdown mode
             break;
@@ -174,7 +177,7 @@ function countdown() {
       centiseconds = 0;
     }
 
-    const timer = document.querySelector<HTMLElement>("#time");
+    const timer = document.querySelector<HTMLDivElement>("#time");
     if (timer) {
       if (min > 0)
         // If theres a minute or more on the timer, it shows minutes and seconds
@@ -220,20 +223,23 @@ function countUp() {
 function increaseScore(side: "home" | "away") {
   switch (side) {
     case "home":
-      if (score.home < 99) {
-        score.home += 1;
-        const homeScoreElement =
-          document.querySelector<HTMLElement>("#home-score");
-        if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
-      }
+      score.home += 1;
+
+      const homeScoreElement =
+        document.querySelector<HTMLDivElement>("#home-score");
+
+      if (homeScoreElement) homeScoreElement.innerHTML = score.home.toString();
+
       return;
+
     case "away":
-      if (score.away < 99) {
-        score.away += 1;
-        const awayScoreElement =
-          document.querySelector<HTMLElement>("#away-score");
-        if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
-      }
+      score.away += 1;
+
+      const awayScoreElement =
+        document.querySelector<HTMLDivElement>("#away-score");
+
+      if (awayScoreElement) awayScoreElement.innerHTML = score.away.toString();
+
       return;
   }
 }
@@ -243,17 +249,23 @@ function decreaseScore(side: "home" | "away") {
     case "home":
       if (score.home > 0) {
         score.home -= 1;
+
         const homeScoreElement =
-          document.querySelector<HTMLElement>("#home-score");
-        if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
+          document.querySelector<HTMLDivElement>("#home-score");
+
+        if (homeScoreElement)
+          homeScoreElement.innerHTML = score.home.toString();
       }
       return;
     case "away":
       if (score.away > 0) {
         score.away -= 1;
+
         const awayScoreElement =
-          document.querySelector<HTMLElement>("#away-score");
-        if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
+          document.querySelector<HTMLDivElement>("#away-score");
+
+        if (awayScoreElement)
+          awayScoreElement.innerHTML = score.away.toString();
       }
       return;
   }
@@ -268,7 +280,7 @@ function showElement(element: HTMLElement) {
 }
 
 function toggleScoreboardVisibility() {
-  const scoreboard = document.querySelector<HTMLElement>("#scoreboard");
+  const scoreboard = document.querySelector<HTMLDivElement>("#scoreboard");
   if (scoreboard) {
     if (scoreboard.style.opacity === "0") {
       showElement(scoreboard);
