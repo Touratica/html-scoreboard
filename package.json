@@ -12,10 +12,12 @@
     "dist"
   ],
   "main": "dist/server.js",
-  "bin": "dist/server.js",
+  "bin": {
+    "html-scoreboard": "dist/server.js"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Touratica/html-scoreboard.git"
+    "url": "git+https://github.com/Touratica/html-scoreboard.git"
   },
   "scripts": {
     "build": "npm run build:prod",
