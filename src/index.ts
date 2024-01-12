@@ -15,7 +15,7 @@ let halfCentiseconds: number;
 
 let hasTTO: boolean;
 
-let score: Score = {
+const score: Score = {
   home: 0,
   away: 0,
 };
