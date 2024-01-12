@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["ES5", "DOM"],
+    "lib": ["ES5", "DOM", "DOM.Iterable"],
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,

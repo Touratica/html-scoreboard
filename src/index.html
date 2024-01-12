@@ -14,47 +14,50 @@
       >
         <div id="scores" class="flex h-11">
           <div id="home-colors" class="w-1 bg-red-600"></div>
-          <div
+          <p
             id="home"
             class="flex min-w-28 items-center justify-center bg-neutral-800 bg-opacity-90 px-2"
           >
-            Home
-          </div>
-          <div id="score" class="flex bg-neutral-800 bg-opacity-70">
-            <div
-              id="home-score"
-              class="ml-2.5 flex w-10 items-center justify-center"
-            >
-              0
-            </div>
-            <div class="flex items-center justify-center">-</div>
-            <div
-              id="away-score"
-              class="mr-2.5 flex w-10 items-center justify-center"
-            >
-              0
-            </div>
-          </div>
+            HOME
+          </p>
           <div
+            id="score"
+            class="flex gap-0.5 bg-neutral-800 bg-opacity-70 px-2"
+          >
+            <p
+              id="home-score"
+              class="flex min-w-10 items-center justify-center"
+            >
+              0
+            </p>
+            <p class="flex items-center justify-center">-</p>
+            <p
+              id="away-score"
+              class="flex min-w-10 items-center justify-center"
+            >
+              0
+            </p>
+          </div>
+          <p
             id="away"
             class="flex min-w-28 items-center justify-center bg-neutral-800 bg-opacity-90 px-2"
           >
-            Away
-          </div>
+            AWAY
+          </p>
           <div id="away-colors" class="w-1 bg-red-600"></div>
         </div>
-        <div
+        <p
           id="time"
           class="flex min-w-24 items-center justify-center bg-neutral-800 bg-opacity-70 px-2"
         >
           12:30
-        </div>
-        <div
+        </p>
+        <p
           id="half"
           class="flex min-w-[51.2px] items-center justify-center bg-yellow-500 px-1 text-neutral-700"
         >
           1P
-        </div>
+        </p>
       </div>
     </main>
     <form
@@ -67,11 +70,12 @@
             Home team:
           </label>
           <input
-            type="text"
-            name="home-team-input"
             id="home-team-input"
-            placeholder="Team initials"
             class="flex-grow rounded-sm px-1"
+            name="home-team-input"
+            type="text"
+            placeholder="Team initials"
+            required
           />
         </div>
         <div class="flex gap-1">
@@ -79,13 +83,13 @@
             Score:
           </label>
           <input
-            type="number"
-            name="home-score-input"
             id="home-score-input"
-            min="0"
-            max="99"
-            value="0"
             class="flex-grow rounded-sm pl-1"
+            name="home-score-input"
+            type="number"
+            value="0"
+            min="0"
+            required
           />
         </div>
         <div class="flex gap-1">
@@ -94,12 +98,13 @@
           </label>
           <input
             id="home-color-input"
+            class="flex-grow rounded-sm px-1"
             name="home-color-input"
-            placeholder="HEX code"
             type="text"
             title="Color hex code (ex: #FF0000)"
+            placeholder="HEX code"
             pattern="^#[0-9A-Fa-f]{6}$"
-            class="flex-grow rounded-sm px-1"
+            required
           />
         </div>
       </div>
@@ -109,11 +114,12 @@
             Away team:
           </label>
           <input
-            type="text"
-            name="away-team-input"
             id="away-team-input"
-            placeholder="Team initials"
             class="flex-grow rounded-sm px-1"
+            name="away-team-input"
+            type="text"
+            placeholder="Team initials"
+            required
           />
         </div>
         <div class="flex gap-1">
@@ -121,13 +127,13 @@
             Score:
           </label>
           <input
-            type="number"
-            name="away-score-input"
             id="away-score-input"
-            min="0"
-            max="99"
-            value="0"
             class="flex-grow rounded-sm pl-1"
+            name="away-score-input"
+            type="number"
+            value="0"
+            min="0"
+            required
           />
         </div>
         <div class="flex gap-1">
@@ -136,12 +142,13 @@
           </label>
           <input
             id="away-color-input"
+            class="flex-grow rounded-sm px-1"
             name="away-color-input"
-            placeholder="HEX code"
             type="text"
             title="Color hex code (ex: #FF0000)"
+            placeholder="HEX code"
             pattern="^#[0-9A-Fa-f]{6}$"
-            class="flex-grow rounded-sm px-1"
+            required
           />
         </div>
       </div>
@@ -149,13 +156,14 @@
         <div class="flex gap-1">
           <label for="timer-input" class="min-w-24 font-semibold">Timer:</label>
           <input
-            type="text"
-            name="timer-input"
             id="timer-input"
+            class="flex-grow rounded-sm px-1"
+            name="timer-input"
+            type="text"
             value="12:30"
             title="M:SS (ex: 12:30)"
             pattern="^[0-9]+:[0-5][0-9]$"
-            class="flex-grow rounded-sm px-1"
+            required
           />
         </div>
         <div class="flex gap-1">
@@ -163,11 +171,12 @@
           <div class="flex flex-grow gap-2">
             <input
               id="half-input"
-              type="number"
-              min="1"
-              value="1"
-              required
               class="h-fit flex-grow rounded-sm pl-1"
+              name="half-input"
+              type="number"
+              value="1"
+              min="1"
+              required
             />
             <div class="flex gap-1">
               <label for="golden-goal">GO</label>
@@ -187,11 +196,11 @@
             <div>
               <label for="count-down">down</label>
               <input
-                checked
                 id="count-down"
                 name="count"
                 type="radio"
                 value="down"
+                checked
               />
             </div>
             <div>
@@ -203,9 +212,9 @@
       </div>
       <div class="mt-1 block text-right">
         <button
-          type="submit"
           id="submit"
           class="rounded-sm bg-neutral-200 px-2 py-0.5"
+          type="submit"
         >
           Submit
         </button>

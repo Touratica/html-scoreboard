@@ -35,6 +35,7 @@
   ],
   "rules": {
     "no-warning-comments": ["error", { "terms": ["XXX"] }],
-    "indent": ["error", 2, { "SwitchCase": 1 }]
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "no-case-declarations": "off"
   }
 }
