@@ -80,9 +80,7 @@
     ]
   },
   "lint-staged": {
-    "**/*": [
-      "eslint",
-      "prettier --write --ignore-unknown"
-    ]
+    "*.{js,ts}": "eslint",
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
