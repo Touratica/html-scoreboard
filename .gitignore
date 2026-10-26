@@ -188,3 +188,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# pnpm is the package manager; never commit npm's lockfile
+package-lock.json
