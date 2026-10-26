@@ -68,10 +68,10 @@
     "webpack-dev-server": "^4.15.1",
     "webpack-shebang-plugin": "^1.1.8"
   },
-  "packageManager": "pnpm@11.20.0",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
+      "version": "11.20.0",
       "onFail": "warn"
     }
   },
