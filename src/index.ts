@@ -1,9 +1,7 @@
 import "./styles/globals.css";
+import { Scoreboard, type Settings, type Side } from "./scoreboard";
 
-type Score = {
-  home: number;
-  away: number;
-};
+const scoreboard = new Scoreboard();
 
 let min: number = 25;
 let sec: number = 0;
@@ -14,11 +12,6 @@ let halfSec: number;
 let halfCentiseconds: number;
 
 let hasTTO: boolean;
-
-const score: Score = {
-  home: 0,
-  away: 0,
-};
 
 let date: number = 0;
 
@@ -34,36 +27,8 @@ function initialize() {
       e.preventDefault(); // Prevents page from reloading when form is submitted
       const formData = new FormData(form);
 
-      const homeInitials =
-        document.querySelector<HTMLParagraphElement>("#home");
-      if (homeInitials)
-        homeInitials.innerHTML = formData.get("home-team-input") as string;
-
-      score.home = parseInt(formData.get("home-score-input") as string);
-      const homeScoreElement =
-        document.querySelector<HTMLParagraphElement>("#home-score");
-      if (homeScoreElement) homeScoreElement.innerHTML = `${score.home}`;
-
-      const homeColor = document.querySelector<HTMLDivElement>("#home-colors");
-      if (homeColor)
-        homeColor.style.backgroundColor = formData.get(
-          "home-color-input",
-        ) as string;
-
-      const awayTeam = document.querySelector<HTMLParagraphElement>("#away");
-      if (awayTeam)
-        awayTeam.innerHTML = formData.get("away-team-input") as string;
-
-      score.away = parseInt(formData.get("away-score-input") as string);
-      const awayScoreElement =
-        document.querySelector<HTMLParagraphElement>("#away-score");
-      if (awayScoreElement) awayScoreElement.innerHTML = `${score.away}`;
-
-      const awayColor = document.querySelector<HTMLDivElement>("#away-colors");
-      if (awayColor)
-        awayColor.style.backgroundColor = formData.get(
-          "away-color-input",
-        ) as string;
+      scoreboard.applySettings(readSettings(formData));
+      render();
 
       const timer = document.querySelector<HTMLParagraphElement>("#time");
       if (timer) timer.innerHTML = formData.get("timer-input") as string;
@@ -104,6 +69,19 @@ function initialize() {
 }
 
 /**
+ * Reads the Home and Away settings from the submitted settings form.
+ */
+function readSettings(formData: FormData): Settings {
+  const readTeam = (side: Side) => ({
+    name: formData.get(`${side}-team-input`) as string,
+    colour: formData.get(`${side}-color-input`) as string,
+    score: parseInt(formData.get(`${side}-score-input`) as string),
+  });
+
+  return { home: readTeam("home"), away: readTeam("away") };
+}
+
+/**
  * Disables listener for keydown event, triggers the pressed key's corresponding
  * function and enables the event listener again.
  *
@@ -116,21 +94,22 @@ function keydownListener(e: KeyboardEvent) {
       toggleTimer();
       break;
     case "F14": // Increases home score by 1
-      increaseScore("home");
+      scoreboard.incrementScore("home");
       break;
     case "F15": // Increases away score by 1
-      increaseScore("away");
+      scoreboard.incrementScore("away");
       break;
     case "F16": // Decreases home score by 1
-      decreaseScore("home");
+      scoreboard.decrementScore("home");
       break;
     case "F17": // Decreases away score by 1
-      decreaseScore("away");
+      scoreboard.decrementScore("away");
       break;
-    case "F18":
-      toggleScoreboardVisibility();
+    case "F18": // Shows/hides the scoreboard
+      scoreboard.toggleVisibility();
       break;
   }
+  render();
   document.addEventListener("keydown", keydownListener);
 }
 
@@ -220,74 +199,29 @@ function countUp() {
   }
 }
 
-function increaseScore(side: "home" | "away") {
-  switch (side) {
-    case "home":
-      score.home += 1;
+/**
+ * Writes the Scoreboard's display snapshot into the page.
+ */
+function render() {
+  const display = scoreboard.display();
 
-      const homeScoreElement =
-        document.querySelector<HTMLDivElement>("#home-score");
+  for (const side of ["home", "away"] as const) {
+    const team = display[side];
 
-      if (homeScoreElement) homeScoreElement.innerHTML = score.home.toString();
+    const name = document.querySelector<HTMLParagraphElement>(`#${side}`);
+    if (name) name.textContent = team.name;
 
-      return;
+    const score = document.querySelector<HTMLParagraphElement>(
+      `#${side}-score`,
+    );
+    if (score) score.textContent = `${team.score}`;
 
-    case "away":
-      score.away += 1;
-
-      const awayScoreElement =
-        document.querySelector<HTMLDivElement>("#away-score");
-
-      if (awayScoreElement) awayScoreElement.innerHTML = score.away.toString();
-
-      return;
+    const colour = document.querySelector<HTMLDivElement>(`#${side}-colors`);
+    if (colour) colour.style.backgroundColor = team.colour;
   }
-}
 
-function decreaseScore(side: "home" | "away") {
-  switch (side) {
-    case "home":
-      if (score.home > 0) {
-        score.home -= 1;
-
-        const homeScoreElement =
-          document.querySelector<HTMLDivElement>("#home-score");
-
-        if (homeScoreElement)
-          homeScoreElement.innerHTML = score.home.toString();
-      }
-      return;
-    case "away":
-      if (score.away > 0) {
-        score.away -= 1;
-
-        const awayScoreElement =
-          document.querySelector<HTMLDivElement>("#away-score");
-
-        if (awayScoreElement)
-          awayScoreElement.innerHTML = score.away.toString();
-      }
-      return;
-  }
-}
-
-function hideElement(element: HTMLElement) {
-  element.style.opacity = "0";
-}
-
-function showElement(element: HTMLElement) {
-  element.style.opacity = "1";
-}
-
-function toggleScoreboardVisibility() {
-  const scoreboard = document.querySelector<HTMLDivElement>("#scoreboard");
-  if (scoreboard) {
-    if (scoreboard.style.opacity === "0") {
-      showElement(scoreboard);
-      return;
-    }
-    hideElement(scoreboard);
-  }
+  const element = document.querySelector<HTMLDivElement>("#scoreboard");
+  if (element) element.style.opacity = display.visible ? "1" : "0";
 }
 
 initialize();
