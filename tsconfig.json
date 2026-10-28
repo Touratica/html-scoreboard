@@ -10,6 +10,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    /* Vitest's type declarations need a newer target than ES5 */
+    "skipLibCheck": true,
 
     /* Path aliases */
     "baseUrl": ".",

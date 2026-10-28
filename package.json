@@ -29,6 +29,8 @@
     "prepack": "pnpm run build",
     "start": "node .",
     "lint": "eslint ./src",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -63,6 +65,7 @@
     "tailwindcss": "^3.4.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
+    "vitest": "^5.0.5",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
