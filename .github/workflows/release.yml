@@ -27,6 +27,8 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Test
+        run: pnpm test
       - name: Release
         run: npx semantic-release
         env:
