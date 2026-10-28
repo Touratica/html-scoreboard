@@ -1,3 +1,5 @@
+import { GameClock, type ClockSettings } from "./game-clock";
+
 export type Side = "home" | "away";
 
 export type Team = {
@@ -8,9 +10,9 @@ export type Team = {
 
 type Teams = Record<Side, Team>;
 
-export type Settings = Teams;
+export type Settings = Teams & { clock: ClockSettings };
 
-export type Display = Teams & { visible: boolean };
+export type Display = Teams & { clock: string; visible: boolean };
 
 function copyTeams(teams: Teams): Teams {
   return { home: { ...teams.home }, away: { ...teams.away } };
@@ -18,8 +20,8 @@ function copyTeams(teams: Teams): Teams {
 
 /**
  * Holds the state of a Match. Never reads the system clock or touches the DOM:
- * the browser shell turns key presses and the settings form into commands, and
- * renders the display snapshot.
+ * the browser shell turns key presses and the settings form into commands,
+ * passes in the current time, and renders the display snapshot.
  */
 export class Scoreboard {
   private teams: Teams = {
@@ -27,10 +29,26 @@ export class Scoreboard {
     away: { name: "AWAY", colour: "#dc2626", score: 0 },
   };
 
+  private clock = new GameClock({ time: "12:30", direction: "down" });
+
   private visible = true;
 
-  applySettings(settings: Settings) {
+  /**
+   * Takes the current time like every other command, though resetting the
+   * Game Clock to a stopped clock doesn't need it yet.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  applySettings(settings: Settings, _now: number) {
     this.teams = copyTeams(settings);
+    this.clock = new GameClock(settings.clock);
+  }
+
+  toggleClock(now: number) {
+    this.clock.toggle(now);
+  }
+
+  tick(now: number) {
+    this.clock.tick(now);
   }
 
   incrementScore(side: Side) {
@@ -45,7 +63,11 @@ export class Scoreboard {
     this.visible = !this.visible;
   }
 
-  display(): Display {
-    return { ...copyTeams(this.teams), visible: this.visible };
+  display(now: number): Display {
+    return {
+      ...copyTeams(this.teams),
+      clock: this.clock.text(now),
+      visible: this.visible,
+    };
   }
 }
