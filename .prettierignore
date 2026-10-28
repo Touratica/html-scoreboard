@@ -192,3 +192,6 @@ dist
 # Built project
 build/*
 !build/index.html
+
+# pnpm lockfile is generated
+pnpm-lock.yaml
