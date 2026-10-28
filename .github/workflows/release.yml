@@ -1,11 +1,11 @@
 name: Release
 on:
-  push:
-    branches: [main]
+  workflow_dispatch: # releases are cut by hand, see docs/adr/0001-manual-releases-from-main.md
 
 jobs:
   release:
     name: Release
+    if: github.ref == 'refs/heads/main' # semantic-release only publishes from main
     runs-on: ubuntu-latest
     permissions:
       contents: write # to be able to publish a GitHub release
