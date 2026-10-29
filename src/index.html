@@ -53,7 +53,7 @@
           12:30
         </p>
         <p
-          id="half"
+          id="period"
           class="flex min-w-[51.2px] items-center justify-center bg-yellow-500 px-1 text-neutral-700"
         >
           1P
@@ -167,15 +167,19 @@
           />
         </div>
         <div class="flex gap-1">
-          <label for="half-input" class="min-w-24 font-semibold">Half:</label>
+          <label for="period-input" class="min-w-24 font-semibold">
+            Period:
+          </label>
           <div class="flex flex-grow gap-2">
             <input
-              id="half-input"
+              id="period-input"
               class="h-fit flex-grow rounded-sm pl-1"
-              name="half-input"
+              name="period-input"
               type="number"
               value="1"
               min="1"
+              max="4"
+              step="1"
               required
             />
             <div class="flex gap-1">

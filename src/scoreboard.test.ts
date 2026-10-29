@@ -5,6 +5,8 @@ const settings: Settings = {
   home: { name: "KCC", colour: "#FF0000", score: 3 },
   away: { name: "ALB", colour: "#0000FF", score: 5 },
   clock: { time: "12:30", direction: "down" },
+  period: 1,
+  goldenGoal: false,
 };
 
 describe("Scoreboard", () => {
@@ -86,6 +88,35 @@ describe("Scoreboard", () => {
 
     scoreboard.toggleVisibility();
     expect(scoreboard.display(0).visible).toBe(true);
+  });
+
+  describe("Period label", () => {
+    it.each([
+      [1, "1P"],
+      [2, "2P"],
+      [3, "3P"],
+      [4, "4P"],
+    ] as const)(
+      "shows Period %i as %s when settings are applied",
+      (period, label) => {
+        const scoreboard = new Scoreboard();
+
+        scoreboard.applySettings({ ...settings, period }, 0);
+
+        expect(scoreboard.display(0).periodLabel).toBe(label);
+      },
+    );
+
+    it.each([1, 2, 3, 4] as const)(
+      "shows the Golden Goal label when Golden Goal is ticked, even with Period %i",
+      (period) => {
+        const scoreboard = new Scoreboard();
+
+        scoreboard.applySettings({ ...settings, period, goldenGoal: true }, 0);
+
+        expect(scoreboard.display(0).periodLabel).toBe("GO");
+      },
+    );
   });
 
   describe("Game Clock", () => {
