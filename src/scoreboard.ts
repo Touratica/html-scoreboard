@@ -20,7 +20,7 @@ export type Settings = Teams & {
 
 export type Display = Teams & {
   clock: string;
-  period: string;
+  periodLabel: string;
   visible: boolean;
 };
 
@@ -83,7 +83,7 @@ export class Scoreboard {
     return {
       ...copyTeams(this.teams),
       clock: this.clock.text(now),
-      period: this.goldenGoal ? "GO" : `${this.period}P`,
+      periodLabel: this.goldenGoal ? "GO" : `${this.period}P`,
       visible: this.visible,
     };
   }

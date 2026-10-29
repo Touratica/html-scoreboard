@@ -103,18 +103,18 @@ describe("Scoreboard", () => {
 
         scoreboard.applySettings({ ...settings, period }, 0);
 
-        expect(scoreboard.display(0).period).toBe(label);
+        expect(scoreboard.display(0).periodLabel).toBe(label);
       },
     );
 
     it.each([1, 2, 3, 4] as const)(
-      "shows GO when Golden Goal is ticked, even with Period %i",
+      "shows the Golden Goal label when Golden Goal is ticked, even with Period %i",
       (period) => {
         const scoreboard = new Scoreboard();
 
         scoreboard.applySettings({ ...settings, period, goldenGoal: true }, 0);
 
-        expect(scoreboard.display(0).period).toBe("GO");
+        expect(scoreboard.display(0).periodLabel).toBe("GO");
       },
     );
   });

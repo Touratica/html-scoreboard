@@ -109,7 +109,7 @@ function render(now: number) {
   if (clock) clock.textContent = display.clock;
 
   const period = document.querySelector<HTMLParagraphElement>("#period");
-  if (period) period.textContent = display.period;
+  if (period) period.textContent = display.periodLabel;
 
   const element = document.querySelector<HTMLDivElement>("#scoreboard");
   if (element) element.style.opacity = display.visible ? "1" : "0";
