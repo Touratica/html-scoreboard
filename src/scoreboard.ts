@@ -10,9 +10,19 @@ export type Team = {
 
 type Teams = Record<Side, Team>;
 
-export type Settings = Teams & { clock: ClockSettings };
+export type Period = 1 | 2 | 3 | 4;
 
-export type Display = Teams & { clock: string; visible: boolean };
+export type Settings = Teams & {
+  clock: ClockSettings;
+  period: Period;
+  goldenGoal: boolean;
+};
+
+export type Display = Teams & {
+  clock: string;
+  period: string;
+  visible: boolean;
+};
 
 function copyTeams(teams: Teams): Teams {
   return { home: { ...teams.home }, away: { ...teams.away } };
@@ -31,6 +41,10 @@ export class Scoreboard {
 
   private clock = new GameClock({ time: "12:30", direction: "down" });
 
+  private period: Period = 1;
+
+  private goldenGoal = false;
+
   private visible = true;
 
   /**
@@ -41,6 +55,8 @@ export class Scoreboard {
   applySettings(settings: Settings, _now: number) {
     this.teams = copyTeams(settings);
     this.clock = new GameClock(settings.clock);
+    this.period = settings.period;
+    this.goldenGoal = settings.goldenGoal;
   }
 
   toggleClock(now: number) {
@@ -67,6 +83,7 @@ export class Scoreboard {
     return {
       ...copyTeams(this.teams),
       clock: this.clock.text(now),
+      period: this.goldenGoal ? "GO" : `${this.period}P`,
       visible: this.visible,
     };
   }
