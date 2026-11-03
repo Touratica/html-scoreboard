@@ -1,6 +1,7 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
+const { IgnorePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -101,7 +102,12 @@ const server = {
   output: {
     path: outputPath,
   },
-  plugins: [new ShebangPlugin()],
+  plugins: [
+    new ShebangPlugin(),
+    // http-server's `union` dependency requires the optional `spdy` package
+    // only when HTTP/2 is asked for, which the overlay server never does.
+    new IgnorePlugin({ resourceRegExp: /^spdy$/ }),
+  ],
   module: {
     rules: [typescriptRule("tsconfig.server.json")],
   },
