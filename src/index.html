@@ -10,20 +10,17 @@
     <main class="text-3xl">
       <div
         id="scoreboard"
-        class="ml-16 mt-8 flex text-white transition-opacity duration-500"
+        class="mt-8 ml-16 flex text-white transition-opacity duration-500"
       >
         <div id="scores" class="flex h-11">
           <div id="home-colors" class="w-1 bg-red-600"></div>
           <p
             id="home"
-            class="flex min-w-28 items-center justify-center bg-neutral-800 bg-opacity-90 px-2"
+            class="flex min-w-28 items-center justify-center bg-neutral-800/90 px-2"
           >
             HOME
           </p>
-          <div
-            id="score"
-            class="flex gap-0.5 bg-neutral-800 bg-opacity-70 px-2"
-          >
+          <div id="score" class="flex gap-0.5 bg-neutral-800/70 px-2">
             <p
               id="home-score"
               class="flex min-w-10 items-center justify-center"
@@ -40,7 +37,7 @@
           </div>
           <p
             id="away"
-            class="flex min-w-28 items-center justify-center bg-neutral-800 bg-opacity-90 px-2"
+            class="flex min-w-28 items-center justify-center bg-neutral-800/90 px-2"
           >
             AWAY
           </p>
@@ -48,7 +45,7 @@
         </div>
         <p
           id="time"
-          class="flex min-w-24 items-center justify-center bg-neutral-800 bg-opacity-70 px-2"
+          class="flex min-w-24 items-center justify-center bg-neutral-800/70 px-2"
         >
           12:30
         </p>
@@ -62,7 +59,7 @@
     </main>
     <form
       id="settings"
-      class="mr-16 mt-8 flex flex-col gap-2 rounded-xl bg-white bg-opacity-50 p-[1%]"
+      class="mt-8 mr-16 flex flex-col gap-2 rounded-xl bg-white/50 p-[1%]"
     >
       <div id="home-settings" class="flex flex-col gap-1">
         <div class="flex gap-1">
@@ -71,7 +68,7 @@
           </label>
           <input
             id="home-team-input"
-            class="flex-grow rounded-sm px-1"
+            class="grow rounded-xs px-1"
             name="home-team-input"
             type="text"
             placeholder="Team initials"
@@ -84,7 +81,7 @@
           </label>
           <input
             id="home-score-input"
-            class="flex-grow rounded-sm pl-1"
+            class="grow rounded-xs pl-1"
             name="home-score-input"
             type="number"
             value="0"
@@ -98,7 +95,7 @@
           </label>
           <input
             id="home-color-input"
-            class="flex-grow rounded-sm px-1"
+            class="grow rounded-xs px-1"
             name="home-color-input"
             type="text"
             title="Color hex code (ex: #FF0000)"
@@ -115,7 +112,7 @@
           </label>
           <input
             id="away-team-input"
-            class="flex-grow rounded-sm px-1"
+            class="grow rounded-xs px-1"
             name="away-team-input"
             type="text"
             placeholder="Team initials"
@@ -128,7 +125,7 @@
           </label>
           <input
             id="away-score-input"
-            class="flex-grow rounded-sm pl-1"
+            class="grow rounded-xs pl-1"
             name="away-score-input"
             type="number"
             value="0"
@@ -142,7 +139,7 @@
           </label>
           <input
             id="away-color-input"
-            class="flex-grow rounded-sm px-1"
+            class="grow rounded-xs px-1"
             name="away-color-input"
             type="text"
             title="Color hex code (ex: #FF0000)"
@@ -157,7 +154,7 @@
           <label for="timer-input" class="min-w-24 font-semibold">Timer:</label>
           <input
             id="timer-input"
-            class="flex-grow rounded-sm px-1"
+            class="grow rounded-xs px-1"
             name="timer-input"
             type="text"
             value="12:30"
@@ -170,10 +167,10 @@
           <label for="period-input" class="min-w-24 font-semibold">
             Period:
           </label>
-          <div class="flex flex-grow gap-2">
+          <div class="flex grow gap-2">
             <input
               id="period-input"
-              class="h-fit flex-grow rounded-sm pl-1"
+              class="h-fit grow rounded-xs pl-1"
               name="period-input"
               type="number"
               value="1"
@@ -217,7 +214,7 @@
       <div class="mt-1 block text-right">
         <button
           id="submit"
-          class="rounded-sm bg-neutral-200 px-2 py-0.5"
+          class="rounded-xs bg-neutral-200 px-2 py-0.5"
           type="submit"
         >
           Submit
