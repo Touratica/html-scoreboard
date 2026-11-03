@@ -5,6 +5,8 @@ import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
+const htmlRecommended = html.configs["flat/recommended"];
+
 export default defineConfig(
   {
     // Flat config only lints *.js, *.mjs and *.cjs by default.
@@ -37,10 +39,10 @@ export default defineConfig(
     },
   },
   {
+    ...htmlRecommended,
     files: ["**/*.html"],
-    ...html.configs["flat/recommended"],
     rules: {
-      ...html.configs["flat/recommended"].rules,
+      ...htmlRecommended.rules,
       "@html-eslint/indent": ["error", 2],
       "@html-eslint/no-extra-spacing-attrs": [
         "warn",
