@@ -78,6 +78,11 @@
       "name": "pnpm",
       "version": "11.20.0",
       "onFail": "warn"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^22.14.0 || >=24.10.0",
+      "onFail": "warn"
     }
   },
   "engines": {
