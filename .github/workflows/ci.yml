@@ -6,7 +6,7 @@ on:
 
 jobs:
   check:
-    name: Lint, typecheck and test
+    name: Lint, typecheck, test and build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -28,3 +28,5 @@ jobs:
         run: pnpm typecheck
       - name: Test
         run: pnpm test
+      - name: Build
+        run: pnpm build
