@@ -6,7 +6,7 @@ on:
 
 jobs:
   check:
-    name: Check
+    name: Check # required status check; renaming it breaks the ruleset
     runs-on: ubuntu-latest
     permissions:
       contents: read
