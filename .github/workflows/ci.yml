@@ -6,7 +6,7 @@ on:
 
 jobs:
   check:
-    name: Lint, typecheck, test and build
+    name: Check
     runs-on: ubuntu-latest
     permissions:
       contents: read
