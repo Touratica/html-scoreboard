@@ -4,6 +4,7 @@
 
 - Commits follow Conventional Commits per `@commitlint/config-conventional`. Subjects start lowercase (`feat: add game clock`); older commits in history use sentence case, so don't copy them.
 - PRs land on `main` by rebase-merge only. Never create merge commits on `main`.
+- Repository rulesets reject direct pushes, force-pushes and deletion on `main`, even for admins. Every change lands via a PR whose `Lint commit messages` check passes, so a commit message that fails commitlint blocks the merge.
 
 ## Agent skills
 
