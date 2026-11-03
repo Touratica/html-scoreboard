@@ -37,6 +37,8 @@
     "http-server": "^14.1.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "@html-eslint/eslint-plugin": "^0.22.0",
     "@html-eslint/parser": "^0.22.0",
     "@tsconfig/node-lts": "^20.1.1",
@@ -92,5 +94,10 @@
   "lint-staged": {
     "*.{js,ts}": "eslint",
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
