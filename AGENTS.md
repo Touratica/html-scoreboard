@@ -1,5 +1,10 @@
 # AGENTS.md
 
+## Git conventions
+
+- Commits follow Conventional Commits per `@commitlint/config-conventional`. Subjects start lowercase (`feat: add game clock`); older commits in history use sentence case, so don't copy them.
+- PRs land on `main` by rebase-merge only. Never create merge commits on `main`.
+
 ## Agent skills
 
 ### Issue tracker
