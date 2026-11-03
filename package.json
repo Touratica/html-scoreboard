@@ -29,7 +29,7 @@
     "prepack": "pnpm run build",
     "start": "node .",
     "lint": "eslint ./src",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -b",
     "test": "vitest run",
     "prepare": "husky"
   },
@@ -41,10 +41,10 @@
     "@commitlint/config-conventional": "^21.2.4",
     "@html-eslint/eslint-plugin": "^0.22.0",
     "@html-eslint/parser": "^0.22.0",
-    "@tsconfig/node-lts": "^20.1.1",
-    "@tsconfig/recommended": "^1.0.3",
+    "@tsconfig/node22": "^22.0.6",
     "@tsconfig/strictest": "^2.0.2",
     "@types/http-server": "^0.12.4",
+    "@types/node": "^22.20.5",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "@webpack-cli/generators": "^3.0.7",
@@ -66,7 +66,7 @@
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.4.1",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.9.3",
     "vitest": "^5.0.5",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
@@ -86,7 +86,7 @@
     }
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">=22"
   },
   "publishConfig": {
     "access": "public"

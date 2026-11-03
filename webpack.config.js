@@ -10,22 +10,50 @@ const dev = process.env.NODE_ENV !== "production";
 
 const stylesHandler = !dev ? MiniCssExtractPlugin.loader : "style-loader";
 
-const config = {
+const outputPath = path.resolve(__dirname, "dist");
+
+/**
+ * Compiles TypeScript with the given project's settings. The tsconfigs are
+ * composite, type-check-only projects for `tsc -b`, so emitting is switched
+ * back on here.
+ */
+function typescriptRule(configFile) {
+  return {
+    test: /\.tsx?$/,
+    loader: "ts-loader",
+    exclude: /node_modules/,
+    options: {
+      configFile,
+      compilerOptions: { composite: false, noEmit: false },
+    },
+  };
+}
+
+const shared = {
+  mode: dev ? "development" : "production",
+  devtool: "inline-source-map",
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
+};
+
+/** The scoreboard page, run in evergreen browsers. */
+const browser = {
+  ...shared,
+  name: "browser",
+  target: "web",
   entry: {
     main: ["./src/index.ts"],
-    server: ["./src/server/index.ts"],
   },
-
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: outputPath,
+    // Runs first, so it alone may clear out the previous build.
     clean: !dev,
   },
-  devtool: "inline-source-map",
   devServer: {
     open: true,
     host: "localhost",
   },
-  target: "node12",
   plugins: [
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
@@ -41,15 +69,11 @@ const config = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
-    new ShebangPlugin(),
+    ...(dev ? [] : [new MiniCssExtractPlugin()]),
   ],
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        loader: "ts-loader",
-        exclude: "/node_modules/",
-      },
+      typescriptRule("tsconfig.browser.json"),
       {
         test: /\.css$/i,
         use: [stylesHandler, "css-loader", "postcss-loader"],
@@ -63,18 +87,24 @@ const config = {
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+};
+
+/** The `html-scoreboard` executable that serves the built page. */
+const server = {
+  ...shared,
+  name: "server",
+  target: "node22",
+  dependencies: ["browser"],
+  entry: {
+    server: ["./src/server/index.ts"],
+  },
+  output: {
+    path: outputPath,
+  },
+  plugins: [new ShebangPlugin()],
+  module: {
+    rules: [typescriptRule("tsconfig.server.json")],
   },
 };
 
-module.exports = () => {
-  if (!dev) {
-    config.mode = "production";
-
-    config.plugins.push(new MiniCssExtractPlugin());
-  } else {
-    config.mode = "development";
-  }
-  return config;
-};
+module.exports = [browser, server];

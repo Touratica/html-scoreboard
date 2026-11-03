@@ -17,6 +17,13 @@
   },
   "overrides": [
     {
+      "files": ["*.config.js"],
+      "parserOptions": { "sourceType": "script" },
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
       "files": ["*.html"],
       "parser": "@html-eslint/parser",
       "extends": ["plugin:@html-eslint/recommended"],
